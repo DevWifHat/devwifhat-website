@@ -25,7 +25,7 @@ export default function Home() {
       {/* Section 1: Header Links */}
       <header className="flex justify-center space-x-10 mb-10 text-2xl">
         <div><a href="#link1">events.</a></div>
-        <div><a href="#link2">hackerthons.</a></div>
+        <div><a href="#link2">hackathons.</a></div>
         <div><a href="#link3">grants.</a></div>
       </header>
 
