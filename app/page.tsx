@@ -1,6 +1,8 @@
 "use client"
 
 import React, { useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 export default function Home() {
   const [isMuted, setIsMuted] = useState(true); // Initial state is muted
@@ -18,14 +20,14 @@ export default function Home() {
   };
 
   return (
-    <main style={{ 
-      backgroundColor: '#141414', 
-      height: '100vh', 
-      display: 'flex', 
+    <main style={{
+      backgroundColor: '#141414',
+      height: '100vh',
+      display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center', 
+      alignItems: 'center',
       justifyContent: 'center',
-      backgroundImage: 'url("dev_wif_head_bg.jpg")',
+      backgroundImage: 'url("dev_wif_hat_bg.jpg")',
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}>
@@ -33,8 +35,8 @@ export default function Home() {
         <source src="dev_wif_hat_teaser.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <button onClick={toggleMute}>
-        {isMuted ? 'Unmute' : 'Mute'}
+      <button onClick={toggleMute} style={{ marginTop: '20px', fontSize: '24px' }}> {/* Adjust button style for larger icons */}
+        <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} size="2x" /> {/* Use FontAwesomeIcon with size */}
       </button>
     </main>
   );
