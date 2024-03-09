@@ -41,7 +41,7 @@ export default function Example() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-white">
-            Log in <span aria-hidden="true">&rarr;</span>
+            Join the Movement
           </a>
         </div>
       </nav>
@@ -49,13 +49,9 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt=""
-              />
+            <a href="/" className="-m-1.5 p-1.5 flex flex-row items-center justify-center gap-2">
+              <img src="dev_wif_hat_icon.png" alt="dev wif hat" className="w-14 h-14 mx-auto" />
+              <span>DevWifHat</span>
             </a>
             <button
               type="button"
@@ -85,7 +81,7 @@ export default function Example() {
                   target='_blank'
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800"
                 >
-                  Join Now
+                  Join The Movement
                 </a>
               </div>
             </div>
