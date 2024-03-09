@@ -6,6 +6,7 @@ import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { faTelegram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import ButtonGroup from '@/components/shared/ButtonGroup';
 import OldVideo from '@/components/shared/OldVideo';
+import TokenInfo from '@/components/shared/TokenInfo';
 
 export default function Home() {
 
@@ -37,7 +38,7 @@ export default function Home() {
         </div>
       </div>
 
-
+      <TokenInfo />
       <OldVideo />
 
     </div>

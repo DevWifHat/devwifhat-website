@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anonymous_Pro } from "next/font/google";
 import "./globals.css";
 import AppBar from '@/components/shared/AppBar';
+import Footer from '@/components/shared/Footer';
 
 const inter = Anonymous_Pro({ weight: "400", subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <AppBar />
         <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
         {children}
+        {/* <Footer /> */}
       </body>
     </html>
   );

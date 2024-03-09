@@ -22,9 +22,9 @@ const OldVideo = () => {
 
   return (
     <div className=''>
-      <div className="mt-12 flex justify-center bg-contain bg-no-repeat h-125 relative">
+      <div className="my-12 flex justify-center bg-contain bg-no-repeat h-125 relative px-4">
         {/* Video and button container */}
-        <div className="relative" style={{ maxWidth: '55%' }}>
+        <div className="relative w-full max-w-5xl mx-auto" >
           <video ref={videoRef} className="mt-25" style={{ width: '100%', height: 'auto' }} autoPlay muted={isMuted} loop>
             <source src="dev_wif_hat_teaser.mp4" type="video/mp4" />
             Your browser does not support the video tag.
