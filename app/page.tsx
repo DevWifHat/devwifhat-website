@@ -79,8 +79,8 @@ export default function Home() {
           <div className="flex flex-wrap justify-between bg-black">
             <div className="w-1/2 flex justify-center items-center border p-4">
               <div>
-                <h1>{price.toFixed(7)}</h1>
-                <p>per $DGM</p>
+                <h1>${price.toFixed(7)}</h1>
+                <p>per $DWH</p>
               </div>
             </div>
             <div className="w-1/2 flex justify-center items-center border p-4">
