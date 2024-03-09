@@ -8,14 +8,12 @@ import { faTelegram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import ButtonGroup from '@/components/shared/ButtonGroup';
 import OldVideo from '@/components/shared/OldVideo';
 import TokenInfo from '@/components/shared/TokenInfo';
+import useTokenData from '@/hooks/useTokenData';
 
 
 export default function Home() {
-
   return (
     <div className=' relative'>
-
-
       {/* Section 2: Icon and Name */}
       <div className="text-center py-5">
         <img src="dev_wif_hat_icon.png" alt="dev wif hat" className="w-20 h-20 md:w-40 md:h-40 mx-auto" />
@@ -36,6 +34,7 @@ export default function Home() {
             </div>
             <ButtonGroup />
           </div>
+
         </div>
       </div>
 

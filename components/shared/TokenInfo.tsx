@@ -4,8 +4,7 @@ import { Spin } from 'antd';
 
 
 const TokenInfo = () => {
-  const { holders, price, currentSupply, isLoading, error } = useTokenData();
-  console.log("Holders: ", holders);
+  const { holders, price, currentSupply, isLoading, fdmc, volume, error } = useTokenData();
 
   return (
     <div className="flex justify-center my-5 w-full mx-auto max-w-xl">
@@ -35,6 +34,18 @@ const TokenInfo = () => {
               <p className='opacity-50'>Current Supply</p>
             </div>
           </div>
+          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
+              <div className='flex flex-col items-center justify-center gap-2'>
+                <h1>${fdmc.toLocaleString()}</h1>
+                <p className='opacity-50'>Market Cap</p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
+              <div className='flex flex-col items-center justify-center gap-2'>
+                <h1>${volume.toLocaleString()}</h1>
+                <p className='opacity-50'>24h Volume</p>
+              </div>
+            </div>
         </div>
       </div>
     </div>
