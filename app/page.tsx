@@ -16,7 +16,7 @@ export default function Home() {
 
       {/* Section 2: Icon and Name */}
       <div className="text-center py-5">
-        <img src="dev_wif_hat_icon.png" alt="dev wif hat" className="w-18 h-18 md:w-40 md:h-40 mx-auto" />
+        <img src="dev_wif_hat_icon.png" alt="dev wif hat" className="w-20 h-20 md:w-40 md:h-40 mx-auto" />
         <h1 className='text-xl md:text-2xl lg:text-4xl my-4'>DevWifHat</h1>
         <p>You either die a dev or live long enough to see yourself turn into a maxi.</p>
         <div>
