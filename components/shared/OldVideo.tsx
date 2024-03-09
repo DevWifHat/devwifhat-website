@@ -26,7 +26,7 @@ const OldVideo = () => {
         {/* Video and button container */}
         <div className="relative w-full max-w-5xl mx-auto" >
           <video ref={videoRef} className="mt-25" style={{ width: '100%', height: 'auto' }} autoPlay muted={isMuted} loop>
-            <source src="dev_wif_hat_teaser.mp4" type="video/mp4" />
+            <source src="devmakingit.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <img src="Dev_Wif_Hat_Frame.png" alt="Frame" className="absolute top-0 left-1/2 transform -translate-x-1/2" style={{ width: '100%', height: 'auto' }} />
