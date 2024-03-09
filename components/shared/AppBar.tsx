@@ -40,7 +40,10 @@ export default function Example() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a
+            href="https://t.co/lT4QYJIuYR"
+            target='_blank'
+            className="text-sm font-semibold leading-6 text-white">
             Join the Movement
           </a>
         </div>
