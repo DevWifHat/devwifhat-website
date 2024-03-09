@@ -13,13 +13,22 @@ const useTokenData = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchTokenHolders = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        // holders
-        const owners = await getTokenAccounts()
+        const fetchTokenHoldersPromise = getTokenAccounts();
+        const fetchTokenDataGeckoPromise = getTokenFromGecko();
+
+        const [owners, token] = await Promise.all([fetchTokenHoldersPromise, fetchTokenDataGeckoPromise]);
+
+        // Set state for token holders
         setHolders(owners.length);
-        
+
+        // Set state for token data from Gecko
+        setVolume(parseInt(token.attributes.volume_usd.h24));
+        setFdmc(parseInt(token.attributes.fdv_usd));
+        setPrice(parseFloat(token.attributes.price_usd));
+        setCurrentSupply(parseInt(token.attributes.total_supply));
       } catch (error) {
         setError(true);
       } finally {
@@ -27,21 +36,7 @@ const useTokenData = () => {
       }
     };
 
-    const fetchTokenDataGecko = async () => {
-      try {
-        const token = await getTokenFromGecko();
-        
-        setVolume(parseInt(token.attributes.volume_usd.h24));
-        setFdmc(parseInt(token.attributes.fdv_usd));
-        setPrice(parseFloat(token.attributes.price_usd));
-        setCurrentSupply(parseInt(token.attributes.total_supply))
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchTokenHolders();
-    fetchTokenDataGecko();
+    fetchData();
   }, []);
 
   return { holders, price, currentSupply, volume, fdmc, isLoading, error };

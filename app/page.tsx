@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { faTelegram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -8,8 +8,6 @@ import { faTelegram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import ButtonGroup from '@/components/shared/ButtonGroup';
 import OldVideo from '@/components/shared/OldVideo';
 import TokenInfo from '@/components/shared/TokenInfo';
-import useTokenData from '@/hooks/useTokenData';
-
 
 export default function Home() {
   return (
@@ -18,7 +16,7 @@ export default function Home() {
       <div className="text-center py-5">
         <img src="dev_wif_hat_icon.png" alt="dev wif hat" className="w-20 h-20 md:w-40 md:h-40 mx-auto" />
         <h1 className='text-xl md:text-2xl lg:text-4xl my-4'>DevWifHat</h1>
-        <p>You either die a dev or live long enough to see yourself turn into a maxi.</p>
+        <p className="px-4">You either die a dev or live long enough to see yourself turn into a maxi.</p>
         <div>
           <div className="flex flex-col justify-center  items-center gap-4 space-x-4 mt-5">
             <div className="flex flex-row items-center justify-center gap-4">
@@ -37,7 +35,6 @@ export default function Home() {
 
         </div>
       </div>
-
 
       <TokenInfo />
       <OldVideo />
