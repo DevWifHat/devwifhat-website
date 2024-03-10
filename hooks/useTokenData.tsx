@@ -1,3 +1,4 @@
+'use client'
 import { getTokenAccounts } from '@/actions/fetchTokenAccounts';
 import { getTokenFromGecko } from '@/actions/fetchTokenFromGecko';
 import { useState, useEffect } from 'react';

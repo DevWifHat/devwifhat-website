@@ -1,6 +1,8 @@
+'use client'
 import React from 'react'
 import useTokenData from '@/hooks/useTokenData';
 import { Skeleton } from 'antd';
+import Chart from './Chart';
 
 const TokenInfo = () => {
   const { holders, price, currentSupply, isLoading, fdmc, volume, error } = useTokenData();
@@ -11,7 +13,7 @@ const TokenInfo = () => {
   );
 
   return (
-    <div className="flex justify-center my-20 w-full mx-auto max-w-xl">
+    <div className="flex flex-col md:flex-row justify-between items-between my-20 w-full mx-auto max-w-4xl">
       <div className="w-full px-4">
         <div className="flex flex-wrap justify-between bg-black">
           <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
@@ -52,6 +54,7 @@ const TokenInfo = () => {
           </div>
         </div>
       </div>
+      <Chart />
     </div>
   )
 }
