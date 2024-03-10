@@ -25,7 +25,7 @@ export default function RootLayout({
         <AppBar />
         <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

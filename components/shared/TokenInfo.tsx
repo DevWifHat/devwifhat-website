@@ -11,7 +11,7 @@ const TokenInfo = () => {
   );
 
   return (
-    <div className="flex justify-center my-5 w-full mx-auto max-w-xl">
+    <div className="flex justify-center my-20 w-full mx-auto max-w-xl">
       <div className="w-full px-4">
         <div className="flex flex-wrap justify-between bg-black">
           <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
@@ -39,17 +39,17 @@ const TokenInfo = () => {
             </div>
           </div>
           <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-              <div className='flex flex-col items-center justify-center gap-2'>
-                <DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
-                <p className='opacity-50'>Market Cap</p>
-              </div>
+            <div className='flex flex-col items-center justify-center gap-2'>
+              <DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
+              <p className='opacity-50'>Market Cap</p>
             </div>
-            <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-              <div className='flex flex-col items-center justify-center gap-2'>
-                <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
-                <p className='opacity-50'>24h Volume</p>
-              </div>
+          </div>
+          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col items-center justify-center gap-2'>
+              <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
+              <p className='opacity-50'>24h Volume</p>
             </div>
+          </div>
         </div>
       </div>
     </div>
