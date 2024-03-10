@@ -13,7 +13,7 @@ const TokenInfo = () => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-between gap-8 md:gap-0 my-20 w-full mx-auto max-w-4xl">
+    <div className="flex flex-col md:flex-row justify-between items-between gap-12 md:gap-0 my-20 w-full mx-auto max-w-4xl">
       <div className="w-full px-4">
         <div className="flex flex-wrap justify-between bg-black">
           <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
