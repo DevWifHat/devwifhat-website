@@ -24,7 +24,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <AppBar />
         <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
-        {children}
+        <div className="w-full max-w-7xl mx-auto">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
