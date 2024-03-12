@@ -31,12 +31,12 @@ const Header = () => {
       </div>
       <div className='w-full px-4 mt-4'>
         <div className="w-full flex flex-col justify-center  items-center gap-4 space-x-4 mt-5">
-          <button className="btn font-bold border border-white text-white  rounded p-2 bg-white bg-opacity-0 hover:bg-opacity-10 px-6 underline">
+          <button className="btn font-bold border border-white text-white  rounded p-3 bg-white bg-opacity-0 hover:bg-opacity-10 px-6 underline w-full">
             <a href="https://jup.ag/swap/SOL-DWH_DEVwHJ57QMPPArD2CyjboMbdWvjEMjXRigYpaUNDTD7o" target='_blank' className='flex flex-row items-center justify-center gap-2'>
               Hatpaper
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-              </svg>
+              </svg> */}
             </a>
           </button>
 
