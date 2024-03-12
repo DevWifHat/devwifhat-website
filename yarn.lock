@@ -3148,6 +3148,11 @@ slash@^3.0.0:
   resolved "https://registry.npmjs.org/slash/-/slash-3.0.0.tgz"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
+sonner@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.4.3.tgz#b0c1cc175a0e9184460911ca9c396daec5311ae9"
+  integrity sha512-SArYlHbkjqRuLiR0iGY2ZSr09oOrxw081ZZkQPfXrs8aZQLIBOLOdzTYxGJB5yIZ7qL56UEPmrX1YqbODwG0Lw==
+
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
@@ -3164,6 +3169,7 @@ string-convert@^0.2.0:
   integrity sha512-u/1tdPl4yQnPBjnVrmdLo9gtuLvELKsAoRapekWggdiQNvvvum+jYF329d84NAa660KQw7pB2n36KrIKVoXa3A==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==

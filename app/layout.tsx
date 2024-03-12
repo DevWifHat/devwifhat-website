@@ -3,6 +3,7 @@ import { Anonymous_Pro } from "next/font/google";
 import "./globals.css";
 import AppBar from '@/components/shared/AppBar';
 import Footer from '@/components/shared/Footer';
+import { Toaster } from 'sonner'
 
 const inter = Anonymous_Pro({ weight: "400", subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
