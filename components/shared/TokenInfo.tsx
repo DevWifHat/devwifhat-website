@@ -9,52 +9,87 @@ const TokenInfo = () => {
 
   // Custom component for displaying either the value or a skeleton screen based on isLoading
   const DisplayValueOrSkeleton = ({ value, formatter = (val: any) => val }: { value: any, formatter?: (val: any) => any }) => (
-    isLoading ? <Skeleton.Input style={{ width: 200, backgroundColor: 'rgba(255, 255, 255, 0.13)' }} active={true} size="small" /> : <h1>{formatter(value)}</h1>
+    isLoading ? <Skeleton.Input style={{ width: 200, backgroundColor: 'rgba(255, 255, 255, 0.13)' }} active={true} size="large" /> : <h1>{formatter(value)}</h1>
   );
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-between gap-12 md:gap-0 mt-8 w-full mx-auto max-w-4xl">
       <div className="w-full px-4">
         <div className="flex flex-wrap justify-between bg-black">
-          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-            <div className='flex flex-col items-center justify-center gap-2'>
-              <DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
-              <p className='opacity-50'>per $DWH</p>
+          {/* per dwh */}
+          <div className="w-1/2 flex justify-between items-start border p-6 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col justify-between h-full w-full gap-2'>
+              <div className="flex flex-row items-center justify-start gap-2">
+                <img src="/dev_wif_hat_icon.png" alt="" className='w-4 h-4 md:w-6 md:h-6' />
+                <p className='opacity-50 text-xs md:text-base'>per $DWH</p>
+              </div>
+              <div className="flex justify-end">
+                <DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
+              </div>
             </div>
           </div>
-          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-            <div className='flex flex-col items-center justify-center gap-2'>
-              <DisplayValueOrSkeleton value={holders} />
-              <p className='opacity-50'>Holders</p>
+          {/* holders */}
+          <div className="w-1/2 flex justify-between items-start border p-6 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col justify-between h-full w-full '>
+              <div className="flex flex-row items-center justify-start gap-2">
+                <img src="/holders.svg" alt="" className='w-4 h-4 md:w-6 md:h-6' />
+                <p className='opacity-50 text-xs md:text-base'>Holders</p>
+              </div>
+              <div className="flex justify-end">
+                <DisplayValueOrSkeleton value={holders} />
+              </div>
             </div>
           </div>
-          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-            <div className='flex flex-col items-center justify-center gap-2'>
-              <DisplayValueOrSkeleton value={"760,000,000"} />
-              <p className='opacity-50'>Initial Supply</p>
+          {/* initial supply */}
+          <div className="w-1/2 flex justify-between items-start border p-6 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col justify-between h-full w-full gap-2'>
+              <div className="flex flex-row items-center justify-start gap-2">
+                <img src="/initsupply.png" alt="initial supply" className='w-4 h-4 md:w-6 md:h-6' />
+                <p className='opacity-50 text-xs md:text-base'>Initial Supply</p>
+              </div>
+              <div className="flex justify-end">
+                <DisplayValueOrSkeleton value={"760,000,000"} />
+              </div>
             </div>
           </div>
-          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-            <div className='flex flex-col items-center justify-center gap-2'>
-              <DisplayValueOrSkeleton value={currentSupply} formatter={(val) => Math.round(val / 10e5).toLocaleString()} />
-              <p className='opacity-50'>Current Supply</p>
+          {/* current supply */}
+          <div className="w-1/2 flex justify-between items-start border p-6 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col justify-between h-full w-full gap-2'>
+              <div className="flex flex-row items-center justify-start gap-2">
+                <img src="/currentsupply.svg" alt="" className='w-4 h-4 md:w-6 md:h-6' />
+                <p className='opacity-50 text-xs md:text-base'>Current Supply</p>
+              </div>
+              <div className="flex justify-end">
+                <DisplayValueOrSkeleton value={currentSupply} formatter={(val) => Math.round(val / 10e5).toLocaleString()} />
+              </div>
             </div>
           </div>
-          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-            <div className='flex flex-col items-center justify-center gap-2'>
-              <DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
-              <p className='opacity-50'>Market Cap</p>
+          {/* market cap */}
+          <div className="w-1/2 flex justify-between items-start border p-6 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col justify-between h-full w-full gap-2'>
+              <div className="flex flex-row items-center justify-start gap-2">
+                <img src="/mc.png" alt="" className='w-4 h-4 md:w-6 md:h-6' />
+                <p className='opacity-50 text-xs md:text-base'>Market Cap</p>
+              </div>
+              <div className="flex justify-end">
+                <DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
+              </div>
             </div>
           </div>
-          <div className="w-1/2 flex justify-center items-center border p-4 bg-white bg-opacity-0 hover:bg-opacity-10">
-            <div className='flex flex-col items-center justify-center gap-2'>
-              <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
-              <p className='opacity-50'>24h Volume</p>
+          {/* volume  */}
+          <div className="w-1/2 flex justify-between items-start border p-6 bg-white bg-opacity-0 hover:bg-opacity-10">
+            <div className='flex flex-col justify-between h-full w-full gap-2'>
+              <div className="flex flex-row items-center justify-start gap-2">
+                <img src="/volume.svg" alt="" className='w-4 h-4 md:w-6 md:h-6' />
+                <p className='opacity-50 text-xs md:text-base'>24H Volumen</p>
+              </div>
+              <div className="flex justify-end">
+                <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <Chart /> */}
     </div>
   )
 }

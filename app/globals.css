@@ -71,4 +71,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .highcharts-credits {
+    @apply !hidden;
+  }
 }
