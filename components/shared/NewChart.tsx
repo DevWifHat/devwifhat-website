@@ -16,7 +16,7 @@ const NewChart = () => {
     try {
       await navigator.clipboard.writeText(fullAddress);
       toast.success('Copied to clipboard'); // Show toast message
-      window.open(`https://solscan.io/account/${fullAddress}`, '_blank');
+      // window.open(`https://solscan.io/account/${fullAddress}`, '_blank');
     } catch (error) {
       toast.error('Failed to copy'); // Show error toast if copy fails
     }
@@ -41,7 +41,7 @@ const NewChart = () => {
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
             <div className="bg-[#E63946] h-2 w-5 rounded-sm border border-white"></div>
-            <a href="" className='flex flex-row items-center justify-center gap-1 text-xs hover:opacity-80'>
+            <a href={`https://solscan.io/account/${liquidity}`} target='_blank' className='flex flex-row items-center justify-center gap-1 text-xs hover:opacity-80'>
               Liquidity
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -59,7 +59,7 @@ const NewChart = () => {
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
             <div className="bg-[#698EFF] h-2 w-5 rounded-sm border border-white"></div>
-            <a href="" className='flex flex-row items-center justify-center gap-1 text-xs'>
+            <a href={`https://solscan.io/account/${ecosystemGrants}`} target='_blank' className='flex flex-row items-center justify-center gap-1 text-xs'>
               Ecosystem Grants
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -77,7 +77,7 @@ const NewChart = () => {
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
             <div className="bg-[#F18500] h-2 w-5 rounded-sm border border-white"></div>
-            <a href="" className='flex flex-row items-center justify-center gap-1 text-xs'>
+            <a href={`https://solscan.io/account/${founders}`} target='_blank' className='flex flex-row items-center justify-center gap-1 text-xs'>
               Founders Vesting
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -95,7 +95,7 @@ const NewChart = () => {
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
             <div className="bg-[#00A084] h-2 w-5 rounded-sm border border-white"></div>
-            <a href="" className='flex flex-row items-center justify-center gap-1 text-xs'>
+            <a href={`https://solscan.io/account/${marketing}`} target='_blank' className='flex flex-row items-center justify-center gap-1 text-xs'>
               Marketing & Operations
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -113,7 +113,7 @@ const NewChart = () => {
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
             <div className="bg-[#6D6875] h-2 w-5 rounded-sm border border-white"></div>
-            <a href="" className='flex flex-row items-center justify-center gap-1 text-xs'>
+            <a href={`https://solscan.io/account/${airdrops}`} target='_blank' className='flex flex-row items-center justify-center gap-1 text-xs'>
               Airdrops
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -131,7 +131,7 @@ const NewChart = () => {
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
             <div className="bg-[#353535] h-2 w-5 rounded-sm border border-white"></div>
-            <a href="" className='flex flex-row items-center justify-center gap-1 text-xs'>
+            <a href={`https://solscan.io/account/${ecosystemGrants}`} target='_blank' className='flex flex-row items-center justify-center gap-1 text-xs'>
               Ecosystem Development
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
