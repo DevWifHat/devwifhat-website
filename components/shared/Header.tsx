@@ -17,9 +17,13 @@ const Header = () => {
         <p className='text-sm '>You either die a dev or live long enough to see yourself turn into a maxi.</p>
       </div>
       <div className="mt-4 w-full px-4 flex flex-row items-center justify-between gap-2">
-        <button className='w-1/2 p-2 rounded-[8px] bg-gradient-to-r from-green-400 to-purple-500 font-black'>Buy $DWH</button>
         <button className='w-1/2 p-2 rounded-[8px] bg-gradient-to-r from-green-400 to-purple-500 font-black'>
-          <a href="" className='bg-black w-full'>DAO</a>
+          <a href="https://jup.ag/swap/SOL-DWH_DEVwHJ57QMPPArD2CyjboMbdWvjEMjXRigYpaUNDTD7o" target='_blank'>
+            Buy $DWH
+          </a>
+        </button>
+        <button className='w-1/2 p-2 rounded-[8px] bg-white bg-opacity-0 hover:bg-opacity-10 border border-white border-opacity-50 font-black'>
+          <a href="https://t.me/thedevwifhat" className='bg-black w-full'>DAO</a>
         </button>
       </div>
       <div className="w-full px-4 mt-4 text-base md:text-lg">
