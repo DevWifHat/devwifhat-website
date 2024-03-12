@@ -27,7 +27,7 @@ const Header = () => {
         </button>
       </div>
       <div className="w-full px-4 mt-4 text-base md:text-lg">
-        Gm $DWH family; We're the first DevCoin in Web3 and we are here for devs and founders, with a degen touch.
+        Gm $DWH family; We&apos;re the first DevCoin in Web3 and we are here for devs and founders, with a degen touch.
       </div>
       <div className='w-full px-4 mt-4'>
         <div className="w-full flex flex-col justify-center  items-center gap-4 space-x-4 mt-5">
