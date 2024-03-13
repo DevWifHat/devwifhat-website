@@ -81,7 +81,7 @@ const TokenInfo = () => {
             <div className='flex flex-col justify-between h-full w-full gap-2'>
               <div className="flex flex-row items-center justify-start gap-2">
                 <img src="/volume.svg" alt="" className='w-4 h-4 md:w-6 md:h-6' />
-                <p className='opacity-50 text-xs md:text-base'>24H Volumen</p>
+                <p className='opacity-50 text-xs md:text-base'>24H Volume</p>
               </div>
               <div className="flex justify-end">
                 <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
