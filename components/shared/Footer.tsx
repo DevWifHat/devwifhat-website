@@ -165,7 +165,7 @@ export default function Footer() {
                   ))}
                 </ul> */}
               </div>
-              <div>
+              <div className='hidden lg:block'>
                 <h3 className="text-sm font-semibold leading-6 text-white">About</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.solutions.map((item) => (
@@ -201,6 +201,18 @@ export default function Footer() {
                   ))}
                 </ul>
               </div> */}
+            </div>
+            <div className="w-full flex md:hidden flex-row items-center justify-between">
+              {/* <span>About</span> */}
+              <ul className="flex flex-row items-center space-x-4"> {/* Adjust the space-x-4 as needed */}
+                {navigation.solutions.map((item) => (
+                  <li key={item.name} className="list-none"> {/* list-none removes default list styling */}
+                    <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
