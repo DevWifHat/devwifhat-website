@@ -9,7 +9,7 @@ const TokenInfo = () => {
 
   // Custom component for displaying either the value or a skeleton screen based on isLoading
   const DisplayValueOrSkeleton = ({ value, formatter = (val: any) => val }: { value: any, formatter?: (val: any) => any }) => (
-    isLoading ? <Skeleton.Input style={{ width: 200, backgroundColor: 'rgba(255, 255, 255, 0.13)' }} active={true} size="large" /> : <h1>{formatter(value)}</h1>
+    isLoading ? <Skeleton.Input style={{ width: 200, backgroundColor: 'rgba(255, 255, 255, 0.13)' }} active={true} size="large" /> : <h1 className='text-2xl'>{formatter(value)}</h1>
   );
 
   return (
@@ -24,7 +24,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>per $DWH</p>
               </div>
               <div className="flex justify-end">
-                $<DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
+                <DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>Market Cap</p>
               </div>
               <div className="flex justify-end">
-                $<DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
+                <DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>24H Volumen</p>
               </div>
               <div className="flex justify-end">
-                $<DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
+                <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
               </div>
             </div>
           </div>
