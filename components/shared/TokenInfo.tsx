@@ -24,7 +24,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>Price</p>
               </div>
               <div className="flex justify-end">
-                $<DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
+                <span className='text-xl md:text-2xl'>$</span><DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
               </div>
             </div>
           </div>
