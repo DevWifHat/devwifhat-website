@@ -21,10 +21,10 @@ const TokenInfo = () => {
             <div className='flex flex-col justify-between h-full w-full gap-2'>
               <div className="flex flex-row items-center justify-start gap-2">
                 <img src="/dev_wif_hat_icon.png" alt="" className='w-4 h-4 md:w-6 md:h-6' />
-                <p className='opacity-50 text-xs md:text-base'>per $DWH</p>
+                <p className='opacity-50 text-xs md:text-base'>Price</p>
               </div>
               <div className="flex justify-end">
-                <DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
+                $<DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
               </div>
             </div>
           </div>

@@ -35,7 +35,7 @@ const NewChart = () => {
 
       <img src="/chartdesktop.png" alt="" className='hidden lg:block w-full relative z-10' />
       <img src="/devmask.png" alt="" className='block lg:hidden absolute z-0 inset-0 w-full' />
-      <img src="/chartmobile.png" alt="" className='block lg:hidden w-full p-4 relative z-10' />
+      <img src="/chartmobile.png" alt="" className='block lg:hidden w-[80%] mx-auto  p-4 relative z-10' />
       {/* Stats & Wallets */}
       <div className="w-full flex max-w-2xl mx-auto flex-col items-center justify-start gap-4 my-4 relative z-10 text-opacity-60 mt-0 md:-mt-12 pb-8">
         {/* Liquidity */}

@@ -42,7 +42,7 @@ const Header = () => {
           </button>
 
           {/* <ButtonGroup /> */}
-          <div className="w-full flex flex-row items-center justify-start gap-4 mt-4 ">
+          <div className="w-full flex flex-row items-center justify-center gap-4 mt-4 ">
             <a href="https://twitter.com/thedevwifhat" target="_blank" rel="noopener noreferrer" className='flex flex-col items-center justify-center gap-2'>
               <FontAwesomeIcon icon={faXTwitter} size='2xl' />
               <div className="flex flex-row items-center justify-center gap-2">
