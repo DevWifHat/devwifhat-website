@@ -9,25 +9,28 @@ const Disclaimer = () => {
 
   const [accepted, setAccepted] = useState(localStorage.getItem('disclaimerAccepted') === 'true');
 
+  // Effect hook to run once component mounts
   useEffect(() => {
-    if (accepted) {
+    // Check localStorage for the disclaimerAccepted flag
+    const isAccepted = localStorage.getItem('disclaimerAccepted') === 'true';
+    setAccepted(isAccepted);
+
+    // Optionally, handle the overflow style here to ensure it runs on the client side
+    if (isAccepted) {
       document.body.style.overflow = 'auto';
     } else {
       document.body.style.overflow = 'hidden';
     }
-  }, [accepted]);
+  }, []);
 
   const acceptDisclaimer = () => {
     setAccepted(true);
     localStorage.setItem('disclaimerAccepted', 'true');
+    document.body.style.overflow = 'auto';
   };
 
   if (accepted) {
     return null;
-  }
-
-  if (accepted) {
-    return null; // Or redirect to the main content of the site
   }
 
   return (
