@@ -9,7 +9,7 @@ const TokenInfo = () => {
 
   // Custom component for displaying either the value or a skeleton screen based on isLoading
   const DisplayValueOrSkeleton = ({ value, formatter = (val: any) => val }: { value: any, formatter?: (val: any) => any }) => (
-    isLoading ? <Skeleton.Input style={{ width: 200, backgroundColor: 'rgba(255, 255, 255, 0.13)' }} active={true} size="large" /> : <h1 className='text-2xl'>{formatter(value)}</h1>
+    isLoading ? <Skeleton.Input style={{ width: 200, backgroundColor: 'rgba(255, 255, 255, 0.13)' }} active={true} size="large" /> : <h1 className='text-xl md:text-2xl'>{formatter(value)}</h1>
   );
 
   return (
