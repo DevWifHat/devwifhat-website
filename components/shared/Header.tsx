@@ -23,7 +23,7 @@ const Header = () => {
           </a>
         </button>
         <button className='w-1/2 p-2 rounded-[8px] bg-white bg-opacity-0 hover:bg-opacity-10 border border-white border-opacity-50 font-black'>
-          <a href="https://t.me/thedevwifhat" className='bg-black w-full'>DAO</a>
+          <a href="https://t.me/thedevwifhat" target='_blank' className='bg-black w-full'>DAO</a>
         </button>
       </div>
       <div className="w-full px-4 mt-4 text-base md:text-lg">
