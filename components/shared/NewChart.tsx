@@ -33,7 +33,7 @@ const NewChart = () => {
   return (
     <section className='w-full relative border-b border-b-white border-opacity-50'>
 
-      <img src="/chart.png" alt="" className='hidden lg:block w-full relative z-10' />
+      <img src="/chartdesktop.png" alt="" className='hidden lg:block w-full relative z-10' />
       <img src="/devmask.png" alt="" className='block lg:hidden absolute z-0 inset-0 w-full' />
       <img src="/chartmobile.png" alt="" className='block lg:hidden w-full p-4 relative z-10' />
       {/* Stats & Wallets */}
