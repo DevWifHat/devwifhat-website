@@ -6,6 +6,13 @@ import Footer from '@/components/shared/Footer';
 import { Toaster } from 'sonner'
 import Disclaimer from '@/components/shared/Disclaimer';
 
+import dynamic from 'next/dynamic';
+
+// Import Disclaimer with SSR disabled
+const DisclaimerWithNoSSR = dynamic(() => import('../components/shared/Disclaimer'), {
+  ssr: false,
+});
+
 const inter = Anonymous_Pro({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} relative`}>
         <AppBar />
-        <Disclaimer />
+        <DisclaimerWithNoSSR />
         <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
         <div className="w-full max-w-7xl mx-auto relative">
           {children}

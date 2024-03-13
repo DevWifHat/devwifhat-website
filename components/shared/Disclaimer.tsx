@@ -1,11 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie';
 
 
 const Disclaimer = () => {
-  const [cookies, setCookie] = useCookies(['disclaimerAccepted']);
 
   const [accepted, setAccepted] = useState(localStorage.getItem('disclaimerAccepted') === 'true');
 
