@@ -24,7 +24,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>per $DWH</p>
               </div>
               <div className="flex justify-end">
-                <DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
+                $<DisplayValueOrSkeleton value={price} formatter={(val) => val.toFixed(7)} />
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>Market Cap</p>
               </div>
               <div className="flex justify-end">
-                <DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
+                $<DisplayValueOrSkeleton value={fdmc} formatter={(val) => `$${val.toLocaleString()}`} />
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const TokenInfo = () => {
                 <p className='opacity-50 text-xs md:text-base'>24H Volumen</p>
               </div>
               <div className="flex justify-end">
-                <DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
+                $<DisplayValueOrSkeleton value={volume} formatter={(val) => `$${val.toLocaleString()}`} />
               </div>
             </div>
           </div>

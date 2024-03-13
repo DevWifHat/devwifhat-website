@@ -61,7 +61,7 @@ const Header = () => {
               </div>
             </a>
             <a href="https://birdeye.so/token/DEVwHJ57QMPPArD2CyjboMbdWvjEMjXRigYpaUNDTD7o?chain=solana" target="_blank" rel="noopener noreferrer" className='flex flex-col items-center justify-center gap-2'>
-              <img src="Birdeyelogo.svg" alt="DevWifHatBirdeye" className="w-8 h-8" />
+              <img src="birdeyelogo.svg" alt="DevWifHatBirdeye" className="w-8 h-8" />
               <div className="flex flex-row items-center justify-center gap-2">
                 Birdeye
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
