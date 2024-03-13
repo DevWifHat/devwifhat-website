@@ -4,6 +4,7 @@ import "./globals.css";
 import AppBar from '@/components/shared/AppBar';
 import Footer from '@/components/shared/Footer';
 import { Toaster } from 'sonner'
+import Disclaimer from '@/components/shared/Disclaimer';
 
 const inter = Anonymous_Pro({ weight: "400", subsets: ["latin"] });
 
@@ -22,10 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} relative`}>
         <AppBar />
+        <Disclaimer />
         <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto relative">
           {children}
         </div>
         <Footer />
