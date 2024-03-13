@@ -31,13 +31,13 @@ const NewChart = () => {
 
 
   return (
-    <section className='w-full relative'>
+    <section className='w-full relative border-b border-b-white border-opacity-50'>
 
       <img src="/chart.png" alt="" className='hidden lg:block w-full relative z-10' />
       <img src="/devmask.png" alt="" className='block lg:hidden absolute z-0 inset-0 w-full' />
       <img src="/chartmobile.png" alt="" className='block lg:hidden w-full p-4 relative z-10' />
       {/* Stats & Wallets */}
-      <div className="w-full flex  flex-col items-center justify-start gap-4 my-4 relative z-10 text-opacity-60">
+      <div className="w-full flex max-w-2xl mx-auto flex-col items-center justify-start gap-4 my-4 relative z-10 text-opacity-60 mt-0 md:-mt-12 pb-8">
         {/* Liquidity */}
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">
