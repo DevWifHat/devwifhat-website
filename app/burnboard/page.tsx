@@ -1,9 +1,14 @@
 'use client'
 
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import QRCode from "react-qr-code";
+import { truncateMiddle } from '@/lib/utils';
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+import { mplTokenMetadata } from '@metaplex-foundation/mpl-token-metadata';
+import { walletAdapterIdentity} from "@metaplex-foundation/umi-signer-wallet-adapters"
+import { toast } from 'sonner';
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -26,14 +31,38 @@ export default function Burnboard() {
     { rank: 10, address: '0x123456789', amount: 10 },
   ]
 
-  function truncateMiddle(text: string, startChars = 3, endChars = 3, separator = '...') {
-    if (text.length <= startChars + endChars) {
-      return text;
-    }
-    return `${text.substring(0, startChars)}${separator}${text.substring(text.length - endChars)}`;
-  }
+  const [amount, setAmount] = useState<number | string>("");
 
-  const [loading, setLoading] = useState(false)
+  const handleBurnTx = async () => {
+    console.log("Requesting wallet sig");
+
+    const umi = createUmi(process.env.NEXT_PUBLIC_HELIUS_URL!).use(mplTokenMetadata());
+    umi.use(walletAdapterIdentity(wallet, true));
+
+    const response = await fetch(`/burn/${amount}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ account: wallet.publicKey!.toString() }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to create burn transaction');
+    }
+    const base64Transaction = data.transaction;
+    const serializedTransaction = Buffer.from(base64Transaction, 'base64');
+
+    const umiTx = umi.transactions.deserialize(serializedTransaction);
+
+    try {
+      const sig = await umi.rpc.sendTransaction(umiTx);
+      console.log(sig);
+
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  }
 
   return (
     <>
@@ -48,13 +77,27 @@ export default function Burnboard() {
           {/* Button */}
 
           <div className="text-center bg-black max-w-xl mx-auto rounded-lg border border-white border-opacity-30 mt-8 p-6">
-            <input type="number" className="w-full input input-bordered rounded-xl py-2 px-6 mb-4" min="1" />
-            {wallet.publicKey ? <button className='bg-black w-full border border-white rounded-xl btn'>Burn $DWH</button> : <WalletMultiButtonNoSSR />}
+          <input
+            type="number"
+            className="w-full input input-bordered rounded-xl py-2 px-6 mb-4"
+            min="1"
+            placeholder="1000000" // Placeholder shown when input is empty
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)} // Update state with the input's new value
+            onFocus={(e) => e.target.value === '1000000' ? setAmount('') : null} // Clear the input when focused if the value is '1000'
+            onBlur={(e) => e.target.value === '' ? setAmount('1000') : null} // Reset to '1000' if input is left empty
+          />
+            <p>Scan with a mobile wallet</p>
+            <div style={{ background: 'white', padding: '16px' }}>
+              <QRCode value={`solana:https://www.devwifhat.xyz/burn/${amount}`} />
+            </div>
+            <div>
+              <p>Or connect and burn directly</p>
+              {wallet.publicKey ? <button onClick={handleBurnTx} className='bg-black w-full border border-white rounded-xl btn'>Burn $DWH</button> : <WalletMultiButtonNoSSR />}
+            </div>
           </div>
 
-
           {/* Leaderboard */}
-
           <div className="w-full max-w-xl mx-auto mt-8 flex flex-col items-start justify-start gap-4">
             {
               dummyData.map((item, index) => {
@@ -68,7 +111,6 @@ export default function Burnboard() {
               })
             }
           </div>
-
         </div>
       </section>
     </>

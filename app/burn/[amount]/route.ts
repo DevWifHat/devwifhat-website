@@ -7,10 +7,9 @@ import { mplTokenMetadata } from '@metaplex-foundation/mpl-token-metadata'
 // Use the RPC endpoint of your choice.
 const hookWallet = publicKey("DeVwhQE3FsUcqXq3AKjdwwjLVZZqaz9URwLghMUCtN4u");
 const mint = publicKey("DevwHyy46NcEduCJ32WwsJFUirifWgvSdSGUNEj6DrVM");
-const umi = createUmi(`https://mainnet.helius-rpc.com/?api-key=${process.env.NEXT_PUBLIC_HELIUS_API_KEY}`).use(mplTokenMetadata());
+const umi = createUmi(process.env.NEXT_PUBLIC_HELIUS_URL!).use(mplTokenMetadata());
 
 umi.use(signerIdentity(createNoopSigner(hookWallet)));
-
 
 export const dynamic = 'force-dynamic' // defaults to auto
 export async function GET(request: Request) {
@@ -22,7 +21,6 @@ export async function GET(request: Request) {
         label,
         icon,
     })
-
 }
 export async function POST(request: Request,
     { params }: { params: { amount: string } }) {
