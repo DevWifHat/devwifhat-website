@@ -1,16 +1,12 @@
-import { publicKey } from '@metaplex-foundation/umi'
-import { TokenStandard, burnV1 } from '@metaplex-foundation/mpl-token-metadata'
-import { createNoopSigner, signerIdentity } from '@metaplex-foundation/umi'
-import { createUmi } from '@metaplex-foundation/umi-bundle-defaults'
-import { mplTokenMetadata } from '@metaplex-foundation/mpl-token-metadata'
+import { getAssociatedTokenAddressSync, createBurnInstruction, } from '@solana/spl-token'
+import { Transaction, Connection, PublicKey, TransactionInstruction } from '@solana/web3.js'
 
 // Use the RPC endpoint of your choice.
-const hookWallet = publicKey("DeVwhQE3FsUcqXq3AKjdwwjLVZZqaz9URwLghMUCtN4u");
-const mint = publicKey("DevwHyy46NcEduCJ32WwsJFUirifWgvSdSGUNEj6DrVM");
-const umi = createUmi(`https://mainnet.helius-rpc.com/?api-key=${process.env.NEXT_PUBLIC_HELIUS_API_KEY}`).use(mplTokenMetadata());
+const hookWallet = new PublicKey("DeVwhQE3FsUcqXq3AKjdwwjLVZZqaz9URwLghMUCtN4u");
+const mint = new PublicKey("DEVwHJ57QMPPArD2CyjboMbdWvjEMjXRigYpaUNDTD7o");
 
-umi.use(signerIdentity(createNoopSigner(hookWallet)));
-
+const RPC = `https://mainnet.helius-rpc.com/?api-key=${process.env.NEXT_PUBLIC_HELIUS_API_KEY}`;
+const connection = new Connection(RPC);
 
 export const dynamic = 'force-dynamic' // defaults to auto
 export async function GET(request: Request) {
@@ -27,32 +23,55 @@ export async function GET(request: Request) {
 export async function POST(request: Request,
     { params }: { params: { amount: string } }) {
     const body = await request.json();
-
-    const account = body?.account;
-    if (!account) throw new Error("missing account");
+    console.log(body);
+    if (!body?.account) throw new Error("missing account");
 
     const amount = parseInt(params.amount || "69000000");
-    const wallet = publicKey(account);
-    const walletSigner = createNoopSigner(wallet);
+    const wallet = new PublicKey(body.account);
 
-    const tx = await burnV1(umi, {
-        mint,
-        authority: walletSigner,
-        tokenOwner: wallet,
-        tokenStandard: TokenStandard.Fungible,
-        amount: amount
-    }).addRemainingAccounts({
-        isSigner: false,
-        isWritable: false,
-        pubkey: hookWallet,
-    }).setFeePayer(walletSigner).setLatestBlockhash(umi);
+    const account = getAssociatedTokenAddressSync(mint, wallet);
 
+    const message = `Burn ${(amount / 10 ** 6).toFixed(2)} $DWH, Dev is watching you.`;
 
+    console.log(message, account);
+    const tx = new Transaction();
+    const blockhash = await connection.getLatestBlockhash();
+    tx.feePayer = wallet;
+    tx.recentBlockhash = blockhash.blockhash;
+    tx.lastValidBlockHeight = blockhash.lastValidBlockHeight;
+    console.log(account.toString(), mint.toString(), wallet.toString(), amount)
+    // 2. Add Memo Instruction
+    tx.add(
+        new TransactionInstruction({
+            keys: [{
+                isSigner: true,
+                isWritable: true,
+                pubkey: wallet,
+                // }, {
+                //     isSigner: false,
+                //     isWritable: false,
+                //     pubkey: hookWallet,
+            }],
+            data: Buffer.from(message, "utf-8"),
+            programId: new PublicKey("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"),
+        }),
+        new TransactionInstruction({
+            keys: [{
+                isSigner: false,
+                isWritable: false,
+                pubkey: hookWallet,
+            }],
+            programId: new PublicKey("noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"),
+        }),
+        createBurnInstruction(account, mint, wallet, amount)
+    );
+
+    // console.log(await connection.simulateTransaction(tx));
     // Serialize and return the unsigned transaction.
-    const serializedTransaction = umi.transactions.serialize(tx.build(umi));
+    const serializedTransaction = tx.serialize({
+        requireAllSignatures: false,
+        verifySignatures: false
+    }).toString("base64");
 
-    const base64Transaction = Buffer.from(serializedTransaction).toString("base64");
-    const message = "Burn your $DWH, Dev is watching you.";
-
-    return Response.json({ transaction: base64Transaction, message })
+    return Response.json({ transaction: serializedTransaction, message })
 }
