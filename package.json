@@ -24,6 +24,7 @@
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/web3.js": "^1.91.1",
+    "@solana/spl-token": "^0.4.1",
     "antd": "^5.15.2",
     "chart.js": "^4.4.2",
     "class-variance-authority": "^0.7.0",
