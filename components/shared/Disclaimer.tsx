@@ -34,7 +34,7 @@ const Disclaimer = () => {
   return (
     <>
       {!accepted && <div className='w-screen h-screen absolute z-[99] flex items-center justify-center bg-black bg-opacity-30 backdrop-blur-xl'>
-        <div className="w-[80%] lg:w-[60%] min-h-[50%] max-h-[80%] overflow-y-scroll flex flex-col items-center justify-start gap-8 bg-black rounded-xl border border-white p-6 py-10 -mt-20">
+        <div className="w-[80%] lg:w-[60%] min-h-[50%] max-h-[50%] md:max-h-[80%] overflow-y-scroll flex flex-col items-center justify-start gap-8 bg-black rounded-xl border border-white p-6 py-10 -mt-20">
           <span className='lg:max-w-[90%] mx-auto'>
             This website is operated by DevWiFhat.
             <br />
