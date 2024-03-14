@@ -7,8 +7,11 @@ import QRCode from "react-qr-code";
 import { truncateMiddle } from '@/lib/utils';
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { mplTokenMetadata } from '@metaplex-foundation/mpl-token-metadata';
-import { walletAdapterIdentity} from "@metaplex-foundation/umi-signer-wallet-adapters"
+import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters"
 import { toast } from 'sonner';
+import { Blockhash } from '@solana/web3.js';
+import { base58 } from '@metaplex-foundation/umi-serializers-encodings';
+import { Spin } from 'antd';
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -31,36 +34,62 @@ export default function Burnboard() {
     { rank: 10, address: '0x123456789', amount: 10 },
   ]
 
+  const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<number | string>("");
 
   const handleBurnTx = async () => {
-    console.log("Requesting wallet sig");
+    if (!wallet.publicKey) {
+      toast.error("Wallet is not connected")
+      return;
+    }
+
+    const numericAmount = Number(amount);
+    if (isNaN(numericAmount) || numericAmount < 1 || !Number.isInteger(numericAmount)) {
+      toast.error("Amount must be a full number and at least 1")
+      return;
+    }
 
     const umi = createUmi(process.env.NEXT_PUBLIC_HELIUS_URL!).use(mplTokenMetadata());
     umi.use(walletAdapterIdentity(wallet, true));
 
-    const response = await fetch(`/burn/${amount}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ account: wallet.publicKey!.toString() }),
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to create burn transaction');
-    }
-    const base64Transaction = data.transaction;
-    const serializedTransaction = Buffer.from(base64Transaction, 'base64');
-
-    const umiTx = umi.transactions.deserialize(serializedTransaction);
+    setLoading(true);
 
     try {
-      const sig = await umi.rpc.sendTransaction(umiTx);
-      console.log(sig);
+      const response = await fetch(`/burn/${amount}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ account: wallet.publicKey!.toString() }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to create burn transaction');
+      }
+      const { transaction, blockhash } = data;
+      const serializedTransaction = Buffer.from(transaction, 'base64');
+  
+      let umiTx = umi.transactions.deserialize(serializedTransaction);
 
+      umiTx = await umi.identity.signTransaction(umiTx)
+
+      const sig = await umi.rpc.sendTransaction(umiTx);
+      const stringSig = base58.deserialize(sig);
+      console.log(stringSig);
+      const conf = await umi.rpc.confirmTransaction(sig, {
+        strategy: {
+          type: "blockhash",
+          blockhash: blockhash.blockhash,
+          lastValidBlockHeight: blockhash.lastValidBlockHeight,
+        },
+        commitment: "confirmed"
+      });
+      console.log(conf);
+      toast.success("Burn successful")
     } catch (error) {
       toast.error((error as Error).message);
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -77,23 +106,23 @@ export default function Burnboard() {
           {/* Button */}
 
           <div className="text-center bg-black max-w-xl mx-auto rounded-lg border border-white border-opacity-30 mt-8 p-6">
-          <input
-            type="number"
-            className="w-full input input-bordered rounded-xl py-2 px-6 mb-4"
-            min="1"
-            placeholder="1000000" // Placeholder shown when input is empty
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)} // Update state with the input's new value
-            onFocus={(e) => e.target.value === '1000000' ? setAmount('') : null} // Clear the input when focused if the value is '1000'
-            onBlur={(e) => e.target.value === '' ? setAmount('1000') : null} // Reset to '1000' if input is left empty
-          />
+            <input
+              type="number"
+              className="w-full input input-bordered rounded-xl py-2 px-6 mb-4"
+              min="1"
+              placeholder="1000000" // Placeholder shown when input is empty
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)} // Update state with the input's new value
+              onFocus={(e) => e.target.value === '1000000' ? setAmount('') : null} // Clear the input when focused if the value is '1000'
+              onBlur={(e) => e.target.value === '' ? setAmount('1000') : null} // Reset to '1000' if input is left empty
+            />
             <p>Scan with a mobile wallet</p>
             <div style={{ background: 'white', padding: '16px' }}>
               <QRCode value={`solana:https://www.devwifhat.xyz/burn/${amount}`} />
             </div>
             <div>
               <p>Or connect and burn directly</p>
-              {wallet.publicKey ? <button onClick={handleBurnTx} className='bg-black w-full border border-white rounded-xl btn'>Burn $DWH</button> : <WalletMultiButtonNoSSR />}
+              {wallet.publicKey ? <button onClick={handleBurnTx} className='bg-black w-full border border-white rounded-xl btn'>{loading && <Spin />} Burn $DWH</button> : <WalletMultiButtonNoSSR />}
             </div>
           </div>
 
