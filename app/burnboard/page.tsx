@@ -75,11 +75,11 @@ export default function Burnboard() {
       });
       console.log(conf);
       toast.success("Burn successful")
+      leaderboard.reload();
     } catch (error) {
       toast.error((error as Error).message);
     } finally {
       setLoading(false)
-      leaderboard.reload();
     }
   }
 
