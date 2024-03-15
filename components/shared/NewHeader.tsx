@@ -36,7 +36,7 @@ const HeaderImage = () => {
           className="w-[60%] h-[80%] object-cover absolute top-4 lg:top-8 left-1/2 -translate-x-1/2"
           muted={isMuted}
         >
-          <source src="/devmakingit.mp4" type="video/mp4" />
+          <source src="/videos/header_video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute z-50 bottom-2 md:bottom-7 left-20 lg:left-[200px]">
