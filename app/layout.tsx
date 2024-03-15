@@ -4,9 +4,10 @@ import "./globals.css";
 import AppBar from '@/components/shared/AppBar';
 import Footer from '@/components/shared/Footer';
 import { Toaster } from 'sonner'
-import Disclaimer from '@/components/shared/Disclaimer';
+require("@solana/wallet-adapter-react-ui/styles.css");
 
 import dynamic from 'next/dynamic';
+import ContextProvider from '@/context/ContextProvider';
 
 // Import Disclaimer with SSR disabled
 const DisclaimerWithNoSSR = dynamic(() => import('../components/shared/Disclaimer'), {
@@ -30,16 +31,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} relative`}>
-        <AppBar />
-        <DisclaimerWithNoSSR />
-        <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
-        <div className="w-full max-w-7xl mx-auto relative">
-          {children}
-        </div>
-        <Footer />
-        <Toaster theme='dark' />
-      </body>
+      <ContextProvider>
+        <body className={`${inter.className} relative`}>
+          <AppBar />
+          <DisclaimerWithNoSSR />
+          <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
+          <div className="w-full max-w-7xl mx-auto relative">
+            {children}
+          </div>
+          <Footer />
+          <Toaster theme='dark' />
+        </body>
+      </ContextProvider>
     </html>
   );
 }

@@ -18,7 +18,6 @@ export async function GET(request: Request) {
         label,
         icon,
     })
-
 }
 export async function POST(request: Request,
     { params }: { params: { amount: string } }) {
@@ -31,7 +30,7 @@ export async function POST(request: Request,
 
     const account = getAssociatedTokenAddressSync(mint, wallet);
 
-    const message = `Burn ${(amount / 10 ** 6).toFixed(2)} $DWH, Dev is watching you.`;
+    const message = `Burn ${(amount).toFixed(2)} $DWH, Dev is watching you.`;
 
     console.log(message, account);
     const tx = new Transaction();
@@ -63,7 +62,7 @@ export async function POST(request: Request,
             }],
             programId: new PublicKey("noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"),
         }),
-        createBurnInstruction(account, mint, wallet, amount)
+        createBurnInstruction(account, mint, wallet, amount * 10 ** 6)
     );
 
     // console.log(await connection.simulateTransaction(tx));
@@ -73,5 +72,5 @@ export async function POST(request: Request,
         verifySignatures: false
     }).toString("base64");
 
-    return Response.json({ transaction: serializedTransaction, message })
+    return Response.json({ transaction: serializedTransaction, blockhash, message })
 }

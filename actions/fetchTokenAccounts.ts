@@ -5,7 +5,7 @@ export const getTokenAccounts = async () => {
     let allOwners = new Set();
   
     while (true) {
-      const response = await fetch(`https://mainnet.helius-rpc.com/?api-key=${process.env.NEXT_PUBLIC_HELIUS_API_KEY}`, {
+      const response = await fetch(process.env.NEXT_PUBLIC_HELIUS_URL!, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
