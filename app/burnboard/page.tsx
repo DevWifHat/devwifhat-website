@@ -91,6 +91,33 @@ export default function Burnboard() {
 
   const [showQR, setShowQR] = useState(false);
 
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = leaderboard.leaderboard.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(leaderboard.leaderboard.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => (prevPage < totalPages ? prevPage + 1 : prevPage));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
+  };
+
+  // add handle lastpage and previouspage
+  const handleLastPage = () => {
+    setCurrentPage(totalPages);
+  }
+
+  const handleFirstPage = () => {
+    setCurrentPage(1);
+  }
+
   return (
     <>
       <section className="my-10 w-full">
@@ -161,13 +188,15 @@ export default function Burnboard() {
                 ) : leaderboard.error ? (
                   <div>Error loading leaderboard.</div>
                 ) : (
-                  leaderboard.leaderboard.map((item, index) => {
+                  currentItems.map((item, index) => {
+                    const itemIndex = indexOfFirstItem + index;
+
                     return (
-                      <div key={index} className="w-full flex items-center justify-between bg-black border-b border-b-white border-opacity-20 bg-opacity-50 p-4">
-                        {index < 3 ? (
-                          <img src={`/icons/${index + 1}.png`} alt={`Place ${index + 1}`} className="w-6 h-6" />
+                      <div key={itemIndex} className="w-full flex items-center justify-between bg-black border-b border-b-white border-opacity-20 bg-opacity-50 p-4">
+                        {itemIndex < 3 ? (
+                          <img src={`/icons/${itemIndex + 1}.png`} alt={`Place ${itemIndex + 1}`} className="w-6 h-6" />
                         ) : (
-                          <span className='text-xl font-bold'>{index + 1}</span>
+                          <span className='text-xl font-bold'>{itemIndex + 1}</span>
                         )}
                         <span className='text-xl font-bold'>{truncateMiddle(item.wallet)}</span>
                         <span className='text-xl font-bold'>{item.amount.toLocaleString()}</span>
@@ -176,6 +205,40 @@ export default function Burnboard() {
                   })
                 )
               }
+            </div>
+
+            <div className="w-full flex justify-between p-4 border-t border-t-white opacity-50 mt-4">
+              <button
+                disabled={currentPage === 1}
+                className='flex items-center justify-center gap-2'
+              >
+                <svg
+                  onClick={handleFirstPage}
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                </svg>
+                <svg
+                  onClick={handlePreviousPage}
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+              <span>Page {currentPage} of {totalPages}</span>
+              <button disabled={currentPage === totalPages}
+                className='flex items-center justify-center gap-2'
+              >
+                <svg
+                  onClick={handleNextPage}
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+                <svg
+                  onClick={handleLastPage}
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                </svg>
+
+              </button>
             </div>
           </div>
         </div>
