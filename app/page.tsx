@@ -16,11 +16,11 @@ export default function Home() {
       </div>
       {/* <TokenInfo /> */}
       {/* <HighCharts /> */}
-      <NewChart />
-      {/* <OldVideo /> */}
-      <div className="flex lg:hidden">
+      <div className="flex lg:hidden mb-4">
         <TokenInfo />
       </div>
+      <NewChart />
+      {/* <OldVideo /> */}
       {/* <Chart /> */}
     </div>
   );

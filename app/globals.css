@@ -75,4 +75,8 @@
   .highcharts-credits {
     @apply !hidden;
   }
+
+  .wallet-adapter-button {
+    @apply !w-full
+  }
 }

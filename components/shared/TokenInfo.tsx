@@ -14,6 +14,7 @@ const TokenInfo = () => {
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-between gap-12 md:gap-0 mt-8 w-full mx-auto max-w-4xl">
+
       <div className="w-full px-4">
         <div className="flex flex-wrap justify-between bg-black">
           {/* per dwh */}
