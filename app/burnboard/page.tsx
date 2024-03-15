@@ -22,18 +22,15 @@ const WalletMultiButtonNoSSR = dynamic(
 export default function Burnboard() {
   const wallet = useWallet();
   const leaderboard = useLeaderboard();
-  console.log("LEADERBOARD: ", leaderboard);
-
 
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<number | string>("");
 
-  const { holders, price, currentSupply, isLoading, fdmc, volume, error } = useTokenData();
+  const { currentSupply, isLoading } = useTokenData();
 
   const totalSupply = 760000000;
   const currentSupplyValue = currentSupply / Math.pow(10, 6);
   const burnedAmount = totalSupply - currentSupplyValue;
-  console.log(totalSupply, currentSupplyValue, burnedAmount)
 
   const handleBurnTx = async () => {
     if (!wallet.publicKey) {
@@ -130,8 +127,6 @@ export default function Burnboard() {
                 onBlur={(e) => e.target.value === '' ? setAmount('1000') : null} // Reset to '1000' if input is left empty
               />
             </div>
-
-
 
             {/* QR CODE */}
             <span className='opacity-50 text-lg'>Scan with your Mobile Wallet</span>
