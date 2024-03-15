@@ -34,9 +34,8 @@ export const getBurnLeaderboard = async () => {
     const leaderboard = Object.entries(aggregatedLeaderboard).map(([wallet, amount]) => ({
         wallet,
         amount
-    }));
+    })).sort((a, b) => Number(b.amount) - Number(a.amount));
 
-    // TODO: Filtering for Leaderboard
     return leaderboard;
 };
 
