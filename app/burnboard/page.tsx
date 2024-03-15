@@ -131,7 +131,9 @@ export default function Burnboard() {
             {/* QR CODE */}
             <span className='opacity-50 text-lg'>Scan with your Mobile Wallet</span>
             {showQR ? <div style={{ background: 'white', padding: '16px' }}>
-              <QRCode value={`solana:https://www.devwifhat.xyz/burn/${amount}`} />
+              <div
+                onClick={() => setShowQR(!showQR)}
+                className=""><QRCode value={`solana:https://www.devwifhat.xyz/burn/${amount}`} /></div>
             </div> : <button
               onClick={() => setShowQR(!showQR)}
               className="w-full rounded-xl border border-white border-opacity-50 opacity-50 flex items-center justify-center py-2">
