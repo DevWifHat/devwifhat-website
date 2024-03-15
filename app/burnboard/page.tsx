@@ -57,7 +57,7 @@ export default function Burnboard() {
       }
       const { transaction, blockhash } = data;
       const serializedTransaction = Buffer.from(transaction, 'base64');
-  
+
       let umiTx = umi.transactions.deserialize(serializedTransaction);
 
       umiTx = await umi.identity.signTransaction(umiTx)
@@ -120,7 +120,7 @@ export default function Burnboard() {
           <div className="w-full max-w-xl mx-auto mt-8 flex flex-col items-start justify-start gap-4">
             {
               leaderboard.isLoading ? (
-                <div><Spin /></div>
+                <div className='w-full h-[20%] flex items-center justify-center'><Spin /></div>
               ) : leaderboard.error ? (
                 <div>Error loading leaderboard.</div>
               ) : (
