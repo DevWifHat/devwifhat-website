@@ -9,9 +9,9 @@ import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { mplTokenMetadata } from '@metaplex-foundation/mpl-token-metadata';
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters"
 import { toast } from 'sonner';
-import { Blockhash } from '@solana/web3.js';
 import { base58 } from '@metaplex-foundation/umi-serializers-encodings';
 import { Spin } from 'antd';
+import useLeaderboard from '@/hooks/useLeaderboard';
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -20,19 +20,8 @@ const WalletMultiButtonNoSSR = dynamic(
 
 export default function Burnboard() {
   const wallet = useWallet();
-
-  const dummyData = [
-    { rank: 1, address: '0x123456789', amount: 100 },
-    { rank: 2, address: '0x123456789', amount: 90 },
-    { rank: 3, address: '0x123456789', amount: 80 },
-    { rank: 4, address: '0x123456789', amount: 70 },
-    { rank: 5, address: '0x123456789', amount: 60 },
-    { rank: 6, address: '0x123456789', amount: 50 },
-    { rank: 7, address: '0x123456789', amount: 40 },
-    { rank: 8, address: '0x123456789', amount: 30 },
-    { rank: 9, address: '0x123456789', amount: 20 },
-    { rank: 10, address: '0x123456789', amount: 10 },
-  ]
+  const leaderboard = useLeaderboard();
+  console.log("LEADERBOARD: ", leaderboard);
 
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<number | string>("");
@@ -90,6 +79,7 @@ export default function Burnboard() {
       toast.error((error as Error).message);
     } finally {
       setLoading(false)
+      leaderboard.reload();
     }
   }
 
@@ -129,15 +119,21 @@ export default function Burnboard() {
           {/* Leaderboard */}
           <div className="w-full max-w-xl mx-auto mt-8 flex flex-col items-start justify-start gap-4">
             {
-              dummyData.map((item, index) => {
-                return (
-                  <div key={index} className="w-full flex items-center justify-between bg-black border-b border-b-white border-opacity-20 bg-opacity-50 rounded-xl p-4">
-                    <span className='text-xl font-bold'>{item.rank}</span>
-                    <span className='text-xl font-bold'>{truncateMiddle(item.address)}</span>
-                    <span className='text-xl font-bold'>{item.amount}</span>
-                  </div>
-                )
-              })
+              leaderboard.isLoading ? (
+                <div><Spin /></div>
+              ) : leaderboard.error ? (
+                <div>Error loading leaderboard.</div>
+              ) : (
+                leaderboard.leaderboard.map((item, index) => {
+                  return (
+                    <div key={index} className="w-full flex items-center justify-between bg-black border-b border-b-white border-opacity-20 bg-opacity-50 rounded-xl p-4">
+                      <span className='text-xl font-bold'>{index + 1}</span>
+                      <span className='text-xl font-bold'>{truncateMiddle(item.wallet)}</span>
+                      <span className='text-xl font-bold'>{item.amount.toFixed(2)}</span>
+                    </div>
+                  )
+                })
+              )
             }
           </div>
         </div>

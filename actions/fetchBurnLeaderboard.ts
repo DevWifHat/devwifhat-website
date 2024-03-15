@@ -14,7 +14,6 @@ export const getBurnLeaderboard = async () => {
         const transactions = await response.json();
 
         if (transactions && transactions.length > 0) {
-            console.log("Fetched transactions: ", transactions);
             lastSignature = transactions[transactions.length - 1].signature;
             transactionsArr.push(...transactions);
         } else {
@@ -23,8 +22,22 @@ export const getBurnLeaderboard = async () => {
         }
     }
 
+    const aggregatedLeaderboard = transactionsArr.reduce((acc, tx) => {
+        if (acc[tx.feePayer]) {
+            acc[tx.feePayer] += tx.tokenTransfers.reduce((acc: any, curr: any) => acc + curr.tokenAmount, 0);
+        } else {
+            acc[tx.feePayer] = tx.tokenTransfers.reduce((acc: any, curr: any) => acc + curr.tokenAmount, 0);
+        }
+        return acc;
+    }, {});
+    
+    const leaderboard = Object.entries(aggregatedLeaderboard).map(([wallet, amount]) => ({
+        wallet,
+        amount
+    }));
+
     // TODO: Filtering for Leaderboard
-    return transactionsArr;
+    return leaderboard;
 };
 
 
