@@ -1,4 +1,5 @@
 'use client'
+import { getAsset } from '@/actions/fetchToken';
 import { getTokenAccounts } from '@/actions/fetchTokenAccounts';
 import { getTokenFromGecko } from '@/actions/fetchTokenFromGecko';
 import { useState, useEffect } from 'react';
@@ -19,8 +20,9 @@ const useTokenData = () => {
       try {
         const fetchTokenHoldersPromise = getTokenAccounts();
         const fetchTokenDataGeckoPromise = getTokenFromGecko();
+        const fetchDasTokenPromise = getAsset();
 
-        const [owners, token] = await Promise.all([fetchTokenHoldersPromise, fetchTokenDataGeckoPromise]);
+        const [owners, token, dasAsset] = await Promise.all([fetchTokenHoldersPromise, fetchTokenDataGeckoPromise, fetchDasTokenPromise]);
 
         // Set state for token holders
         setHolders(owners.length);
@@ -29,7 +31,7 @@ const useTokenData = () => {
         setVolume(parseInt(token.attributes.volume_usd.h24));
         setFdmc(parseInt(token.attributes.fdv_usd));
         setPrice(parseFloat(token.attributes.price_usd));
-        setCurrentSupply(parseInt(token.attributes.total_supply));
+        setCurrentSupply(dasAsset.token_info.supply);
       } catch (error) {
         setError(true);
       } finally {
