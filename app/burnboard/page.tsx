@@ -145,7 +145,7 @@ export default function Burnboard() {
               <span className='opacity-50 text-lg'>Enter Amount</span>
               <input
                 type="number"
-                className="w-full input input-bordered rounded-xl py-2 px-6 mb-2"
+                className="w-full input input-bordered rounded-xl py-2 px-6 mb-2 bg-black border border-white border-opacity-50"
                 min="1"
                 placeholder="1000000" // Placeholder shown when input is empty
                 value={amount}
