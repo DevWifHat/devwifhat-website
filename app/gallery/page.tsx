@@ -104,7 +104,18 @@ export default function GaleryPage() {
       id: 20,
       name: 'Yoda With Hat',
       src: '/images/galery/yodawifhat.jpg',
+    },
+    {
+      id: 20,
+      name: 'Yoda With Hat',
+      src: '/images/galery/airdrop.jpg',
+    },
+    {
+      id: 20,
+      name: 'Yoda With Hat',
+      src: '/images/galery/walking.jpg',
     }
+
   ];
 
 
@@ -161,7 +172,7 @@ export default function GaleryPage() {
                   <a
                     href={image.src}
                     download
-                    className='w-full flex flex-row items-center justify-center gap-2 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'
+                    className='w-full flex flex-row items-center justify-center gap-2 border border-white bg-black rounded-xl py-2 hover:bg-white bg-opacity-0 hover:bg-opacity-10'
                   >
                     Download
                     {/* SVG for Download Icon */}

@@ -36,8 +36,12 @@ const NewChart = () => {
       <img src="/chartdesktop.png" alt="" className='hidden lg:block w-full relative z-10' />
       <img src="/devmask.png" alt="" className='block lg:hidden absolute z-0 inset-0 w-full' />
       <img src="/chartmobile.png" alt="" className='block lg:hidden w-[80%] mx-auto  p-4 relative z-10' />
+      <div className="my-4 w-full max-w-2xl mx-auto flex flex-col items-start justify-start gap-2 mb-8 md:-mt-8 px-4">
+        <h1 className="text-2xl md:text-4xl font-bold">Tokenomics</h1>
+        <p className="text-xs md:text-base opacity-50">Founders Vesting allocation will be distributed over a course of 3 years.</p>
+      </div>
       {/* Stats & Wallets */}
-      <div className="w-full flex max-w-2xl mx-auto flex-col items-center justify-start gap-4 my-4 relative z-10 text-opacity-60 mt-0 md:-mt-12 pb-8">
+      <div className="w-full flex max-w-2xl mx-auto flex-col items-center justify-start gap-4 my-4 relative z-10 text-opacity-60 mt-0  pb-8">
         {/* Liquidity */}
         <div className="w-full flex flex-row items-center justify-between px-4">
           <div className="flex flex-row items-center justify-center gap-2">

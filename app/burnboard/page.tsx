@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { base58 } from '@metaplex-foundation/umi-serializers-encodings';
 import { Spin } from 'antd';
 import useLeaderboard from '@/hooks/useLeaderboard';
+import useTokenData from '@/hooks/useTokenData';
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -23,8 +24,16 @@ export default function Burnboard() {
   const leaderboard = useLeaderboard();
   console.log("LEADERBOARD: ", leaderboard);
 
+
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<number | string>("");
+
+  const { holders, price, currentSupply, isLoading, fdmc, volume, error } = useTokenData();
+
+  const totalSupply = 760000000;
+  const currentSupplyValue = currentSupply / Math.pow(10, 6);
+  const burnedAmount = totalSupply - currentSupplyValue;
+  console.log(totalSupply, currentSupplyValue, burnedAmount)
 
   const handleBurnTx = async () => {
     if (!wallet.publicKey) {
@@ -93,6 +102,15 @@ export default function Burnboard() {
             <span className='opacity-50'>Burn your $DWH and get ranked</span>
           </div>
 
+          <div className="w-full max-w-xl mx-auto flex flex-col items-center justify-center gap-4 px-4">
+            <div className="w-full flex flex-col items-center justify-center gap-2 py-4  border border-white border-opacity-50  rounded-xl">
+              <span className='text-xl font-black uppercase'>🔥 Burned 🔥</span>
+              <span className='text-4xl font-black'>
+                {isLoading ? <Spin /> : <>{burnedAmount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} $DWH</>}
+              </span>
+            </div>
+          </div>
+
           {/* Button */}
 
           <div className="text-center bg-black max-w-xl mx-auto rounded-lg border border-white border-opacity-30 mt-8 p-6">
@@ -129,7 +147,7 @@ export default function Burnboard() {
                     <div key={index} className="w-full flex items-center justify-between bg-black border-b border-b-white border-opacity-20 bg-opacity-50 rounded-xl p-4">
                       <span className='text-xl font-bold'>{index + 1}</span>
                       <span className='text-xl font-bold'>{truncateMiddle(item.wallet)}</span>
-                      <span className='text-xl font-bold'>{item.amount.toFixed(2)}</span>
+                      <span className='text-xl font-bold'>{item.amount.toLocaleString()}</span>
                     </div>
                   )
                 })
