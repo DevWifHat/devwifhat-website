@@ -1,5 +1,6 @@
 'use client'
 import { toast } from 'sonner';
+import GaleryItem from './GaleryItem';
 
 export default function GaleryPage() {
 
@@ -118,36 +119,6 @@ export default function GaleryPage() {
 
   ];
 
-
-  const copyImageUrlToClipboard = async (imageUrl: string) => {
-    try {
-      // Construct the full URL by combining the window location and the image's relative path
-      const fullImageUrl = `${window.location.origin}${imageUrl}`;
-      await navigator.clipboard.writeText(fullImageUrl);
-      toast.success('Full image URL copied to clipboard!');
-    } catch (err) {
-      console.error('Error copying full image URL:', err);
-      toast.error('Failed to copy full image URL.');
-    }
-  };
-
-  const shareImageOnTwitter = async (imageUrl: string, presetText: string = "Check out this image: ") => {
-    try {
-      // Construct the full URL by combining the window location and the image's relative path
-      const fullImageUrl = `${window.location.origin}${imageUrl}`;
-      const twitterBaseUrl = "https://twitter.com/intent/tweet";
-      const tweetText = encodeURIComponent(`${presetText} ${fullImageUrl}`);
-      const twitterShareUrl = `${twitterBaseUrl}?text=${tweetText}`;
-
-      // Open the Twitter share URL in a new tab/window
-      window.open(twitterShareUrl, '_blank');
-      toast.success('Twitter share window opened!');
-    } catch (err) {
-      console.error('Error opening Twitter share window:', err);
-      toast.error('Failed to open Twitter share window.');
-    }
-  }
-
   return (
     <>
       <section className='w-full my-20'>
@@ -161,42 +132,10 @@ export default function GaleryPage() {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
           {galeryImages.map((image, index) => {
             return (
-              <div key={index} className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900 p-2 border border-white border-opacity-50 rounded-xl">
-                <img src={image.src} alt={image.name} className="w-full h-full object-cover rounded-2xl" />
-                <div className="w-full flex flex-row items-center justify-between gap-4">
-                  {/* Copy to clipboard - not fully supported */}
-                  <button
-                    className='w-1/3 flex flex-row items-center justify-center gap-2 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'
-                    onClick={() => copyImageUrlToClipboard(image.src)}
-                  >
-                    Copy
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
-                    </svg>
-                  </button>
-                  {/* Share */}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault(); // Prevent default anchor behavior
-                      shareImageOnTwitter(image.src, "The hat stays on! - $DWH @thedevwifhat cooking.");
-                    }}
-                    className='w-1/3 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'>
-                    Share on X
-                  </button>
-                  {/* Download */}
-                  <a
-                    href={image.src}
-                    download
-                    className='w-1/3 flex flex-row items-center justify-center gap-2 border border-white bg-black rounded-xl py-2 hover:bg-white bg-opacity-0 hover:bg-opacity-10'
-                  >
-                    Download
-                    {/* SVG for Download Icon */}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v12m0 0l3.5-3.5M12 15l-3.5-3.5m3.5 3.5V3m6 18H6a2 2 0 01-2-2V6a2 2 0 012-2h3.5m8.5 0H18a2 2 0 012 2v12a2 2 0 01-2 2z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
+              <GaleryItem
+                key={index}
+                image={image}
+              />
             )
           })}
         </div>
