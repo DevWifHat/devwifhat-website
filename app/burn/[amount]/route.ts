@@ -1,5 +1,6 @@
+import { getPriorityFeeEstimate } from '@/actions/fetchPriorityFeeEstimate';
 import { getAssociatedTokenAddressSync, createBurnInstruction, } from '@solana/spl-token'
-import { Transaction, Connection, PublicKey, TransactionInstruction } from '@solana/web3.js'
+import { Transaction, Connection, PublicKey, TransactionInstruction, ComputeBudgetProgram } from '@solana/web3.js'
 
 // Use the RPC endpoint of your choice.
 const hookWallet = new PublicKey("DeVwhQE3FsUcqXq3AKjdwwjLVZZqaz9URwLghMUCtN4u");
@@ -64,6 +65,18 @@ export async function POST(request: Request,
         }),
         createBurnInstruction(account, mint, wallet, amount * 10 ** 6)
     );
+
+    // Add prio tx
+    const priorityLevel: string = "High"; // `Min`, `Low`, `Medium`, `High`, `VeryHigh`, `UnsafeMax`, `Default`
+
+    let feeEstimate = { priorityFeeEstimate: 0 };
+    if (priorityLevel !== "NONE") {
+      feeEstimate = await getPriorityFeeEstimate(priorityLevel);
+      const computePriceIx = ComputeBudgetProgram.setComputeUnitPrice({
+        microLamports: feeEstimate.priorityFeeEstimate,
+      });
+      tx.add(computePriceIx);
+    }
 
     // console.log(await connection.simulateTransaction(tx));
     // Serialize and return the unsigned transaction.
