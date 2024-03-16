@@ -119,24 +119,34 @@ export default function GaleryPage() {
   ];
 
 
-  const copyImageToClipboard = async (imageUrl: string) => {
+  const copyImageUrlToClipboard = async (imageUrl: string) => {
     try {
-      const imageFetch = await fetch(imageUrl);
-      if (!imageFetch.ok) throw new Error('Network response was not ok.');
-      const imageBlob = await imageFetch.blob();
-      console.log('Image Blob:', imageBlob);
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          [imageBlob.type]: imageBlob
-        })
-      ]);
-      toast.success('Image copied to clipboard!');
-
+      // Construct the full URL by combining the window location and the image's relative path
+      const fullImageUrl = `${window.location.origin}${imageUrl}`;
+      await navigator.clipboard.writeText(fullImageUrl);
+      toast.success('Full image URL copied to clipboard!');
     } catch (err) {
-      console.error('Error copying image:', err);
-      toast.error('Failed to copy image.');
+      console.error('Error copying full image URL:', err);
+      toast.error('Failed to copy full image URL.');
     }
   };
+
+  const shareImageOnTwitter = async (imageUrl: string, presetText: string = "Check out this image: ") => {
+    try {
+      // Construct the full URL by combining the window location and the image's relative path
+      const fullImageUrl = `${window.location.origin}${imageUrl}`;
+      const twitterBaseUrl = "https://twitter.com/intent/tweet";
+      const tweetText = encodeURIComponent(`${presetText} ${fullImageUrl}`);
+      const twitterShareUrl = `${twitterBaseUrl}?text=${tweetText}`;
+
+      // Open the Twitter share URL in a new tab/window
+      window.open(twitterShareUrl, '_blank');
+      toast.success('Twitter share window opened!');
+    } catch (err) {
+      console.error('Error opening Twitter share window:', err);
+      toast.error('Failed to open Twitter share window.');
+    }
+  }
 
   return (
     <>
@@ -155,24 +165,29 @@ export default function GaleryPage() {
                 <img src={image.src} alt={image.name} className="w-full h-full object-cover rounded-2xl" />
                 <div className="w-full flex flex-row items-center justify-between gap-4">
                   {/* Copy to clipboard - not fully supported */}
-                  {/* <button
-                    className='w-1/2 flex flex-row items-center justify-center gap-2 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'
-                    onClick={() => copyImageToClipboard(image.src)}
+                  <button
+                    className='w-1/3 flex flex-row items-center justify-center gap-2 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'
+                    onClick={() => copyImageUrlToClipboard(image.src)}
                   >
                     Copy
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
                     </svg>
-                  </button> */}
+                  </button>
                   {/* Share */}
-                  {/* <button className='w-1/2 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent default anchor behavior
+                      shareImageOnTwitter(image.src, "The hat stays on! - $DWH @thedevwifhat cooking.");
+                    }}
+                    className='w-1/3 border border-white rounded-xl py-2 bg-white bg-opacity-0 hover:bg-opacity-10'>
                     Share on X
-                  </button> */}
+                  </button>
                   {/* Download */}
                   <a
                     href={image.src}
                     download
-                    className='w-full flex flex-row items-center justify-center gap-2 border border-white bg-black rounded-xl py-2 hover:bg-white bg-opacity-0 hover:bg-opacity-10'
+                    className='w-1/3 flex flex-row items-center justify-center gap-2 border border-white bg-black rounded-xl py-2 hover:bg-white bg-opacity-0 hover:bg-opacity-10'
                   >
                     Download
                     {/* SVG for Download Icon */}
