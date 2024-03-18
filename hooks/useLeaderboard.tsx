@@ -1,10 +1,10 @@
 'use client'
 
-import { getBurnLeaderboard } from '@/actions/fetchBurnLeaderboard';
 import { useState, useEffect } from 'react';
+import { getBurnLeaderboard } from '@/actions/fetchBurnLeaderboard';
 
 const useLeaderboard = () => {
-  const [leaderboard, setLeaderboard] = useState<any[]>([]); // TODO type
+  const [leaderboard, setLeaderboard] = useState<any[]>([]); // TODO: Define a type for your leaderboard items
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -14,8 +14,8 @@ const useLeaderboard = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const leaderboard = await getBurnLeaderboard();
-        setLeaderboard(leaderboard);
+        const leaderboardData = await getBurnLeaderboard();
+        setLeaderboard(leaderboardData);
       } catch (error) {
         setError(true);
       } finally {
@@ -25,6 +25,31 @@ const useLeaderboard = () => {
 
     fetchData();
   }, [index]);
+
+  useEffect(() => {
+    // Establish a connection to your SSE endpoint
+    const eventSource = new EventSource('/api/events');
+
+    // Handle incoming messages
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data);
+      
+      // setLeaderboard(newLeaderboardData);
+    };
+
+    // Handle any errors
+    eventSource.onerror = (error) => {
+      console.error('EventSource failed:', error);
+      eventSource.close();
+      setError(true);
+    };
+
+    // Clean up the connection when the component unmounts or when reloading
+    return () => {
+      eventSource.close();
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
 
   const reload = () => {
     setIndex((prev) => prev + 1);

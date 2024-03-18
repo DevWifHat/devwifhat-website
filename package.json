@@ -27,6 +27,7 @@
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/web3.js": "^1.91.1",
+    "@vercel/kv": "^1.0.1",
     "antd": "^5.15.2",
     "bs58": "^5.0.0",
     "chart.js": "^4.4.2",

@@ -50,7 +50,7 @@ export default function Burnboard() {
     setLoading(true);
 
     try {
-      const response = await fetch(`/burn/${amount}`, {
+      const response = await fetch(`/api/burn/${amount}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ export default function Burnboard() {
             {showQR ? <div style={{ background: 'white', padding: '16px' }}>
               <div
                 onClick={() => setShowQR(!showQR)}
-                className=""><QRCode value={`solana:https://www.devwifhat.xyz/burn/${amount}`} /></div>
+                className=""><QRCode value={`solana:https://www.devwifhat.xyz/api/burn/${amount}`} /></div>
             </div> : <button
               onClick={() => setShowQR(!showQR)}
               className="w-full rounded-xl border border-white border-opacity-50 opacity-50 flex items-center justify-center py-2">
