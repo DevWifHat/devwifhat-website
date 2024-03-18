@@ -26,31 +26,6 @@ const useLeaderboard = () => {
     fetchData();
   }, [index]);
 
-  useEffect(() => {
-    // Establish a connection to your SSE endpoint
-    const eventSource = new EventSource('/api/events');
-
-    // Handle incoming messages
-    eventSource.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log(data);
-      
-      // setLeaderboard(newLeaderboardData);
-    };
-
-    // Handle any errors
-    eventSource.onerror = (error) => {
-      console.error('EventSource failed:', error);
-      eventSource.close();
-      setError(true);
-    };
-
-    // Clean up the connection when the component unmounts or when reloading
-    return () => {
-      eventSource.close();
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
-
   const reload = () => {
     setIndex((prev) => prev + 1);
   };
