@@ -9,7 +9,7 @@ const AppBar = () => {
         <Logo />
         <div className="hidden lg:flex flex-row items-center justify-center gap-4">
           <div className="border-b border-b-white border-opacity-0 hover:border-opacity-100 py-2 transition-all ease-in-out duration-300"><Link href='/burnboard' className=''>BurnBoard.</Link></div>
-          <div className="border-b border-b-white border-opacity-0 hover:border-opacity-100 py-2 transition-all ease-in-out duration-300"><Link href='/gallery' className=''>Gallery.</Link></div>
+          <div className="border-b border-b-white border-opacity-0 hover:border-opacity-100 py-2 transition-all ease-in-out duration-300"><Link href='/memeboard' className=''>MemeBoard.</Link></div>
         </div>
         <button className='bg-white bg-opacity-0 hover:bg-opacity-10'>
           <a href="https://t.co/lT4QYJIuYR" className='border border-white border-opacity-50 rounded-[6px] p-2 md:px-4 text-sm md:text-base flex flex-row items-center justify-center gap-4 bg-gradient-to-r from-green-400 to-purple-500 text-transparent bg-clip-text'>

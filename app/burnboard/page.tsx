@@ -13,6 +13,7 @@ import { base58 } from '@metaplex-foundation/umi-serializers-encodings';
 import { Spin } from 'antd';
 import useLeaderboard from '@/hooks/useLeaderboard';
 import useTokenData from '@/hooks/useTokenData';
+import Head from 'next/head';
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -120,6 +121,19 @@ export default function Burnboard() {
 
   return (
     <>
+      <Head>
+        <title>BurnBoard - Burn your $DWH</title>
+        <meta name="description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
+        <meta property="og:title" content="BurnBoard - Burn your $DWH" />
+        <meta property="og:description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
+        <meta property="og:image" content="/path/to/your/image.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="BurnBoard - Burn your $DWH" />
+        <meta property="twitter:description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
+        <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
+        {/* Add any additional metadata here */}
+      </Head>
       <section className="my-10 w-full">
         <div className="flex flex-col items-center justify-center gap-6 px-4">
           {/* Title */}
