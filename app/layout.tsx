@@ -16,13 +16,41 @@ const DisclaimerWithNoSSR = dynamic(() => import('../components/shared/Disclaime
   ssr: false,
 });
 
+
+
 const inter = Anonymous_Pro({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "DevWifHat (DWH)",
   description: "You either die a dev or live long enough to see yourself turn into a maxi. Shipping on a L1 near you, and remember.. what happens on chain, stays on chain.",
-  icons: {
-    icon: { url: '/dev_wif_hat_icon.png', type: 'image/png' }, // /public path
+  icons: [
+    {
+      url: '/dev_wif_hat_icon.png',
+      type: 'image/png',
+      sizes: 'any' // Specify sizes if necessary, 'any' is used as a placeholder
+    }
+  ],
+  // Adding Open Graph (OG) image
+  openGraph: {
+    title: "DevWifHat (DWH)", // OG title (optional if you want it different from the main title)
+    description: "You either die a dev or live long enough to see yourself turn into a maxi. Shipping on a L1 near you, and remember.. what happens on chain, stays on chain.", // OG description (optional if you want it different from the main description)
+    images: {
+      url: '/dev_wif_hat_icon.png', // Specify the path to your OG image
+      type: 'image/png',
+      width: '1200', // Specify the width of your OG image
+      height: '630', // Specify the height of your OG image
+      alt: 'You either die a dev or live long enough to see yourself turn into a maxi. Shipping on a L1 near you, and remember.. what happens on chain, stays on chain.',
+    },
+  },
+  // Adding Twitter card information
+  twitter: {
+    card: 'summary_large_image', // Use "summary_large_image" for large image card or "summary" for small
+    site: '@thedevwifhat', // Your Twitter handle
+    creator: '@thedevwifhat', // The Twitter handle of the content creator
+    images: {
+      url: '/dev_wif_hat_icon.png', // Path to the image for Twitter card
+      alt: 'You either die a dev or live long enough to see yourself turn into a maxi. Shipping on a L1 near you, and remember.. what happens on chain, stays on chain.',
+    },
   },
 };
 

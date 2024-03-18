@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 const navigation = [
   { name: 'HatPaper.', href: '/hatpaper' },
   { name: 'BurnBoard.', href: '/burnboard' },
-  { name: 'Gallery.', href: '/gallery' },
+  { name: 'MemeBoard.', href: '/memeboard' },
 ]
 
 export default function NewAppBar() {
