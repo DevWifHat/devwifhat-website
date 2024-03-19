@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from './Logo'
-import { useRouter } from 'next/navigation'
 
 const navigation = [
   { name: 'HatPaper.', href: '/hatpaper' },
   { name: 'BurnBoard.', href: '/burnboard' },
   { name: 'MemeBoard.', href: '/memeboard' },
+  { name: 'Grants.', href: '/grants' },
 ]
 
 export default function NewAppBar() {
