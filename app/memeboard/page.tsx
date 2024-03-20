@@ -116,7 +116,12 @@ export default function MemeBoard() {
       id: 20,
       name: 'Yoda With Hat',
       src: '/images/galery/walking.jpg',
-    }
+    },
+    {
+      id: 20,
+      name: 'New Meme',
+      src: '/images/galery/newmeme1.jpg',
+    },
 
   ];
 

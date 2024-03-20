@@ -14,11 +14,8 @@ import { Spin } from 'antd';
 import useLeaderboard from '@/hooks/useLeaderboard';
 import useTokenData from '@/hooks/useTokenData';
 import Head from 'next/head';
+import MyMultiButton from '@/components/shared/MyMultiButton';
 
-const WalletMultiButtonNoSSR = dynamic(
-  () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
-  { ssr: false }
-);
 
 export default function Burnboard() {
   const wallet = useWallet();
@@ -184,7 +181,10 @@ export default function Burnboard() {
             {/* Buttons */}
             <div className='mt-6 flex flex-col items-start justify-start gap-2'>
               <span className='opacity-50 text-lg'>Or connect and burn directly</span>
-              {wallet.publicKey ? <button onClick={handleBurnTx} className='bg-black w-full border border-white rounded-xl btn'>{loading && <Spin />} Burn $DWH</button> : <div className="w-full flex items-center justify-center border border-white opacity-50 rounded-xl"><WalletMultiButtonNoSSR /></div>}
+              {wallet.publicKey ? <button onClick={handleBurnTx} className='bg-black w-full border border-white rounded-xl btn'>
+                {loading && <Spin />} Burn $DWH</button> :
+                <MyMultiButton />
+              }
             </div>
           </div>
 

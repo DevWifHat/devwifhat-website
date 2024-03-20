@@ -1,17 +1,19 @@
-import dynamic from 'next/dynamic';
-import React from 'react'
+'use client'
 
-const WalletMultiButtonNoSSR = dynamic(
-  () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
+import dynamic from 'next/dynamic';
+
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
   { ssr: false }
 );
 
-const MyMultiButton = () => {
-  return (
-    <>
-      <WalletMultiButtonNoSSR />
-    </>
-  )
-}
+export default function MyMultiButton() {
+  const customClassNames = "bg-blue-500 text-white hover:bg-blue-700";
 
-export default MyMultiButton
+  return (
+    <div className=" relative z-[999]">
+      <WalletMultiButtonDynamic className={customClassNames} />
+    </div>
+  );
+}
