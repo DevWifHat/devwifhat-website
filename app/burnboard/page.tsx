@@ -131,8 +131,8 @@ export default function Burnboard() {
         <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
         {/* Add any additional metadata here */}
       </Head>
-      <section className="my-10 w-full">
-        <div className="flex flex-col items-center justify-center gap-6 px-4">
+      <section className=" w-full bg-burnGradient bg-contain min-h-screen">
+        <div className="flex flex-col items-center justify-center gap-6 px-4 bg-burnBg bg-cover py-20 min-h-screen">
           {/* Title */}
           <div className='text-center '>
             <h1 className='text-xl md:text-2xl lg:text-4xl font-bold'>BurnBoard</h1>
@@ -221,7 +221,9 @@ export default function Burnboard() {
               }
             </div>
 
-            <div className="w-full flex justify-between p-4 border-t border-t-white opacity-50 mt-4">
+
+            {/* Pagination */}
+            <div className="w-full flex justify-between p-4 bg-black rounded-b-xl border-t border-t-white opacity-50 mt-4">
               <button
                 disabled={currentPage === 1}
                 className='flex items-center justify-center gap-2'

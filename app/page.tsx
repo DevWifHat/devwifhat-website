@@ -10,13 +10,13 @@ import NewChart from '@/components/shared/NewChart';
 export default function Home() {
   return (
     <div className='relative'>
-      <div className="w-full flex flex-col lg:flex-row-reverse items-start justify-center pb-10 border-b border-b-white border-opacity-50">
+      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-start justify-center pb-10 border-b border-b-white border-opacity-50">
         <HeaderImage />
         <Header />
       </div>
       {/* <TokenInfo /> */}
       {/* <HighCharts /> */}
-      <div className="flex lg:hidden mb-4">
+      <div className="flex lg:hidden mb-4 max-w-7xl mx-auto">
         <TokenInfo />
       </div>
       <NewChart />

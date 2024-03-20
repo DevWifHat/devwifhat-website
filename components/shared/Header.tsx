@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <section className="w-full md:w-1/3 my-4">
+    <section className="w-full  md:w-1/3 my-4">
       <div className="w-full px-4 flex flex-col items-start justify-start gap-4">
         <div className="w-full flex flex-row md:flex-col items-center md:items-start justify-start gap-8">
           <img src="dev_wif_hat_icon.png" alt="dev wif hat" className="w-20 h-20 md:w-40 md:h-40 lg:w-60 lg:h-60" />

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Anonymous_Pro } from "next/font/google";
 import "./globals.css";
-import AppBar from '@/components/shared/AppBar';
 import Footer from '@/components/shared/Footer';
 import { Toaster } from 'sonner'
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -10,6 +9,7 @@ import dynamic from 'next/dynamic';
 import ContextProvider from '@/context/ContextProvider';
 import NewAppBar from '@/components/shared/NewAppBar';
 import ScrollUp from '@/components/shared/ScrollUp';
+import { usePathname, useRouter } from 'next/navigation';
 
 // Import Disclaimer with SSR disabled
 const DisclaimerWithNoSSR = dynamic(() => import('../components/shared/Disclaimer'), {
@@ -59,15 +59,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const pathname = usePathname();
+
   return (
     <html lang="en">
       <ContextProvider>
-        <body className={`${inter.className} relative`}>
+        <body className={` relative`}>
           {/* <AppBar /> */}
           <NewAppBar />
           <DisclaimerWithNoSSR />
           <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
-          <div className="w-full max-w-7xl mx-auto relative">
+          <div className="w-full mx-auto relative">
             {children}
           </div>
           <ScrollUp />

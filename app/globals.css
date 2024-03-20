@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.anonymous-pro-regular {
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.anonymous-pro-bold {
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.anonymous-pro-regular-italic {
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.anonymous-pro-bold-italic {
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -78,8 +105,8 @@
 
   /* Body styles */
 body {
-  font-family: 'Inter', sans-serif;
-    @apply selection:px-4 selection:text-black;
+  font-family: "Anonymous Pro", monospace;
+      @apply selection:px-4 selection:text-black;
   /* margin: 0; */
   /* height: 100vh; */
   /* Fluid Fonts */
@@ -92,6 +119,7 @@ body {
 
 /* Heading styles */
 h1 {
+    font-family: "Anonymous Pro", monospace;
   font-size: calc(30px + (36 - 30) * ((100vw - 320px) / (1280 - 320)));
   font-style: normal;
   font-weight: 900;
@@ -99,6 +127,7 @@ h1 {
   line-height: calc(36px + (40 - 36) * ((100vw - 320px) / (1280 - 320)));
 }
 h2 {
+    font-family: "Anonymous Pro", monospace;
   font-size: calc(20px + (24 - 20) * ((100vw - 320px) / (1280 - 320)));
   font-style: normal;
   font-weight: 800;
@@ -106,6 +135,7 @@ h2 {
   line-height: calc(34px + (38 - 34) * ((100vw - 320px) / (1280 - 320)));
 }
 h3 {
+    font-family: "Anonymous Pro", monospace;
   font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1280 - 320)));
   font-style: normal;
   font-weight: 700;
@@ -143,9 +173,15 @@ body::-webkit-scrollbar-thumb {
 
 
 /* Custom Wallet Button */
-.mymultibutton {
-  @apply !bg-[#1CE49B] !text-white hover:!text-black  !important;
+.mymultibutton,
+.wallet-adapter-button {
+  @apply !w-full !bg-[#1CE49B] !text-black hover:!text-white  !important;
+  width: 100% !important;
   border: 1px solid black !important;
+}
+
+.wallet-adapter-dropdown {
+  width: 100% !important;
 }
 
 @keyframes bounce {

@@ -31,7 +31,7 @@ const NewChart = () => {
 
 
   return (
-    <section className='w-full relative border-b border-b-white border-opacity-50'>
+    <section className='w-full max-w-7xl  mx-auto relative border-b border-b-white border-opacity-50'>
 
       <img src="/chartdesktop.png" alt="" className='hidden lg:block w-full relative z-10' />
       <img src="/devmask.png" alt="" className='block lg:hidden absolute z-0 inset-0 w-full' />

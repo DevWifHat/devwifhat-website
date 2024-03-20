@@ -9,10 +9,10 @@ const WalletMultiButtonDynamic = dynamic(
 );
 
 export default function MyMultiButton() {
-  const customClassNames = "bg-blue-500 text-white hover:bg-blue-700";
+  const customClassNames = "glow-on-hover";
 
   return (
-    <div className=" relative z-[999]">
+    <div className="relative z-[999]">
       <WalletMultiButtonDynamic className={customClassNames} />
     </div>
   );

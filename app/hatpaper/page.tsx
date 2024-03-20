@@ -16,10 +16,12 @@ export default function Hatpaper() {
         <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
         {/* Add any additional metadata here */}
       </Head>
-      <img src="/1.png" alt="1" className='w-full' />
-      <img src="/2.png" alt="2" className='w-full' />
-      <img src="/3.png" alt="3" className='w-full' />
-      <img src="/4.png" alt="4" className='w-full' />
+      <main className='border-b border-b-white border-opacity-50'>
+        <img src="/1.png" alt="1" className='w-full' />
+        <img src="/2.png" alt="2" className='w-full' />
+        <img src="/3.png" alt="3" className='w-full' />
+        <img src="/4.png" alt="4" className='w-full' />
+      </main>
     </>
   )
 }

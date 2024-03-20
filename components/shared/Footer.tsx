@@ -6,9 +6,10 @@ import { JSX, SVGProps } from 'react'
 
 const navigation = {
   solutions: [
-    { name: 'Events.', href: '#' },
-    { name: 'Hackathons.', href: '#' },
-    { name: 'Grants.', href: '#' },
+    { name: 'Hatpaper.', href: '/hatpaper' },
+    { name: 'BurnBoard.', href: '/burnboard' },
+    { name: 'MemeBoard.', href: '/memeboard' },
+    { name: 'ClaimBoard.', href: '/claim' },
     // { name: 'Insights', href: '#' },
   ],
   // support: [
@@ -90,11 +91,11 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-black" aria-labelledby="footer-heading">
+    <footer className="bg-black border-t border-t-white border-opacity-50" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto container px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <a href="/" className="-m-1.5 p-1.5 flex flex-row items-center justify-start gap-2">

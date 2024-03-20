@@ -10,7 +10,7 @@ const navigation = [
   { name: 'HatPaper.', href: '/hatpaper' },
   { name: 'BurnBoard.', href: '/burnboard' },
   { name: 'MemeBoard.', href: '/memeboard' },
-  { name: 'Claim.', href: '/claim' },
+  { name: 'ClaimBoard.', href: '/claim' },
 ]
 
 export default function NewAppBar() {
@@ -24,7 +24,7 @@ export default function NewAppBar() {
 
   return (
     <header className="bg-black bg-opacity-60 backdrop-blur-md border-b border-b-white border-opacity-50">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex container items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Logo />
         </div>
