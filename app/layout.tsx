@@ -62,20 +62,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
         gtag('config', 'G-WDCZKHSTM8');
       `,
-          }}
-        ></script>
-      </Head>
+        }}
+      ></script>
       <ContextProvider>
         <body className={`${inter.className} relative`}>
           {/* <AppBar /> */}

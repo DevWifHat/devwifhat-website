@@ -123,18 +123,7 @@ export default function MemeBoard() {
   return (
     <>
       <Head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-WDCZKHSTM8');
-      `,
-          }}
-        ></script>
 
         <title>$DWH Gallery - MemeBoard</title>
         <meta name="description" content="Explore the funniest and most creative memes from the devs wif hat community. Dive into the $DWH Gallery now!" />
@@ -148,6 +137,18 @@ export default function MemeBoard() {
         <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
         {/* Add any additional metadata here */}
       </Head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+        }}
+      ></script>
       <section className='w-full my-20'>
         <div className="w-full flex flex-col items-center justify-center">
           <h1 className='text-4xl font-bold'>$DWH Gallery</h1>
