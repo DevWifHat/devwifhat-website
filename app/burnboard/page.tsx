@@ -122,6 +122,19 @@ export default function Burnboard() {
   return (
     <>
       <Head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+          }}
+        ></script>
+
         <title>BurnBoard - Burn your $DWH</title>
         <meta name="description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
         <meta property="og:title" content="BurnBoard - Burn your $DWH" />

@@ -4,6 +4,20 @@ export default function Hatpaper() {
   return (
     <>
       <Head>
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+          }}
+        ></script>
+
         <title>Hatpaper - A Visual Journey</title>
         <meta name="description" content="Dive into the visual journey of the devwifhat Hatpaper." />
         <meta property="og:title" content="Hatpaper - A Visual Journey" />

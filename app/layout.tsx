@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import ContextProvider from '@/context/ContextProvider';
 import NewAppBar from '@/components/shared/NewAppBar';
 import ScrollUp from '@/components/shared/ScrollUp';
+import Head from 'next/head';
 
 // Import Disclaimer with SSR disabled
 const DisclaimerWithNoSSR = dynamic(() => import('../components/shared/Disclaimer'), {
@@ -61,6 +62,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+          }}
+        ></script>
+      </Head>
       <ContextProvider>
         <body className={`${inter.className} relative`}>
           {/* <AppBar /> */}
