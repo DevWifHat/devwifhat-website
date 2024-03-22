@@ -10,6 +10,7 @@ const navigation = [
   { name: 'HatPaper.', href: '/hatpaper' },
   { name: 'BurnBoard.', href: '/burnboard' },
   { name: 'Gallery.', href: '/gallery' },
+  { name: 'Buy $DWH.', href: '/onlyup' },
 ]
 
 export default function NewAppBar() {
