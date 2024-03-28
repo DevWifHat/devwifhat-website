@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 const navigation = [
   { name: 'HatPaper.', href: '/hatpaper' },
   { name: 'BurnBoard.', href: '/burnboard' },
+  { name: 'MemeBoard.', href: '/memeboard' },
   { name: 'Gallery.', href: '/gallery' },
   { name: 'Buy $DWH.', href: '/onlyup' },
 ]

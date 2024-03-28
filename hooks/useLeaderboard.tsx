@@ -1,10 +1,10 @@
 'use client'
 
-import { getBurnLeaderboard } from '@/actions/fetchBurnLeaderboard';
 import { useState, useEffect } from 'react';
+import { getBurnLeaderboard } from '@/actions/fetchBurnLeaderboard';
 
 const useLeaderboard = () => {
-  const [leaderboard, setLeaderboard] = useState<any[]>([]); // TODO type
+  const [leaderboard, setLeaderboard] = useState<any[]>([]); // TODO: Define a type for your leaderboard items
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -14,8 +14,8 @@ const useLeaderboard = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const leaderboard = await getBurnLeaderboard();
-        setLeaderboard(leaderboard);
+        const leaderboardData = await getBurnLeaderboard();
+        setLeaderboard(leaderboardData);
       } catch (error) {
         setError(true);
       } finally {

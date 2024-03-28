@@ -13,6 +13,7 @@ import { base58 } from '@metaplex-foundation/umi-serializers-encodings';
 import { Spin } from 'antd';
 import useLeaderboard from '@/hooks/useLeaderboard';
 import useTokenData from '@/hooks/useTokenData';
+import Head from 'next/head';
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -50,7 +51,7 @@ export default function Burnboard() {
     setLoading(true);
 
     try {
-      const response = await fetch(`/burn/${amount}`, {
+      const response = await fetch(`/api/burn/${amount}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,6 +121,31 @@ export default function Burnboard() {
 
   return (
     <>
+      <Head>
+        <title>BurnBoard - Burn your $DWH</title>
+        <meta name="description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
+        <meta property="og:title" content="BurnBoard - Burn your $DWH" />
+        <meta property="og:description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
+        <meta property="og:image" content="/path/to/your/image.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="BurnBoard - Burn your $DWH" />
+        <meta property="twitter:description" content="Participate in the BurnBoard event. Burn your $DWH tokens and get ranked among the top contributors." />
+        <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
+        {/* Add any additional metadata here */}
+      </Head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+        }}
+      ></script>
       <section className="my-10 w-full">
         <div className="flex flex-col items-center justify-center gap-6 px-4">
           {/* Title */}
@@ -160,7 +186,7 @@ export default function Burnboard() {
             {showQR ? <div style={{ background: 'white', padding: '16px' }}>
               <div
                 onClick={() => setShowQR(!showQR)}
-                className=""><QRCode value={`solana:https://www.devwifhat.xyz/burn/${amount}`} /></div>
+                className=""><QRCode value={`solana:https://www.devwifhat.xyz/api/burn/${amount}`} /></div>
             </div> : <button
               onClick={() => setShowQR(!showQR)}
               className="w-full rounded-xl border border-white border-opacity-50 opacity-50 flex items-center justify-center py-2">
