@@ -4,6 +4,9 @@ export default function Hatpaper() {
   return (
     <>
       <Head>
+
+
+
         <title>Hatpaper - A Visual Journey</title>
         <meta name="description" content="Dive into the visual journey of the devwifhat Hatpaper." />
         <meta property="og:title" content="Hatpaper - A Visual Journey" />
@@ -16,12 +19,22 @@ export default function Hatpaper() {
         <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
         {/* Add any additional metadata here */}
       </Head>
-      <main className='border-b border-b-white border-opacity-50'>
-        <img src="/1.png" alt="1" className='w-full' />
-        <img src="/2.png" alt="2" className='w-full' />
-        <img src="/3.png" alt="3" className='w-full' />
-        <img src="/4.png" alt="4" className='w-full' />
-      </main>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+        }}
+      ></script>
+      <img src="/1.png" alt="1" className='w-full' />
+      <img src="/2.png" alt="2" className='w-full' />
+      <img src="/3.png" alt="3" className='w-full' />
+      <img src="/4.png" alt="4" className='w-full' />
     </>
   )
 }

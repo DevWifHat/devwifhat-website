@@ -131,8 +131,20 @@ export default function Burnboard() {
         <meta property="twitter:image" content="/path/to/your/twitter-image.jpg" />
         {/* Add any additional metadata here */}
       </Head>
-      <section className=" w-full bg-burnGradient bg-contain min-h-screen">
-        <div className="flex flex-col items-center justify-center gap-6 px-4 bg-burnBg bg-cover py-20 min-h-screen">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WDCZKHSTM8');
+      `,
+        }}
+      ></script>
+      <section className="my-10 w-full">
+        <div className="flex flex-col items-center justify-center gap-6 px-4">
           {/* Title */}
           <div className='text-center '>
             <h1 className='text-xl md:text-2xl lg:text-4xl font-bold'>BurnBoard</h1>
