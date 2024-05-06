@@ -14,6 +14,9 @@ import { Spin } from 'antd';
 import useLeaderboard from '@/hooks/useLeaderboard';
 import useTokenData from '@/hooks/useTokenData';
 import Head from 'next/head';
+import { sendSignedTransaction } from '@/lib/send';
+import { Connection } from '@solana/web3.js';
+import { toWeb3JsTransaction } from "@metaplex-foundation/umi-web3js-adapters";
 
 const WalletMultiButtonNoSSR = dynamic(
   () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
@@ -67,20 +70,24 @@ export default function Burnboard() {
 
       let umiTx = umi.transactions.deserialize(serializedTransaction);
 
-      umiTx = await umi.identity.signTransaction(umiTx)
+      umiTx = await umi.identity.signTransaction(umiTx);
 
-      const sig = await umi.rpc.sendTransaction(umiTx);
-      const stringSig = base58.deserialize(sig);
-      console.log(stringSig);
-      const conf = await umi.rpc.confirmTransaction(sig, {
-        strategy: {
-          type: "blockhash",
-          blockhash: blockhash.blockhash,
-          lastValidBlockHeight: blockhash.lastValidBlockHeight,
-        },
-        commitment: "confirmed"
-      });
-      console.log(conf);
+      const web3Tx = toWeb3JsTransaction(umiTx);
+
+      const res = await sendSignedTransaction({ signedTransaction: web3Tx, connection: new Connection(umi.rpc.getEndpoint()) });
+
+      // const sig = await umi.rpc.sendTransaction(umiTx);
+      // const stringSig = base58.deserialize(sig);
+      // console.log(stringSig);
+      // const conf = await umi.rpc.confirmTransaction(sig, {
+      //   strategy: {
+      //     type: "blockhash",
+      //     blockhash: blockhash.blockhash,
+      //     lastValidBlockHeight: blockhash.lastValidBlockHeight,
+      //   },
+      //   commitment: "confirmed"
+      // });
+      console.log(res);
       toast.success("Burn successful")
       leaderboard.reload();
     } catch (error) {
