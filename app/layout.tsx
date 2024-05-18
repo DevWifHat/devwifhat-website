@@ -63,7 +63,7 @@ export default function RootLayout({
   // const pathname = usePathname();
 
   return (
-    <html lang="en">
+    <>
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDCZKHSTM8"></script>
       <script
         dangerouslySetInnerHTML={{
@@ -76,20 +76,22 @@ export default function RootLayout({
       `,
         }}
       ></script>
-      <ContextProvider>
-        <body className={` relative`}>
-          {/* <AppBar /> */}
-          <NewAppBar />
-          <DisclaimerWithNoSSR />
-          <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
-          <div className="w-full mx-auto relative">
-            {children}
-          </div>
-          <ScrollUp />
-          <Footer />
-          <Toaster theme='dark' />
-        </body>
-      </ContextProvider>
-    </html>
+      <html lang="en">
+        <ContextProvider>
+          <body className={` relative`}>
+            {/* <AppBar /> */}
+            <NewAppBar />
+            <DisclaimerWithNoSSR />
+            <link rel="icon" href="/dev_wif_hat_icon.png" sizes="any" />
+            <div className="w-full mx-auto relative">
+              {children}
+            </div>
+            <ScrollUp />
+            <Footer />
+            <Toaster theme='dark' />
+          </body>
+        </ContextProvider>
+      </html>
+    </>
   );
 }
