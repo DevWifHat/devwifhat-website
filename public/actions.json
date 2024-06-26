@@ -1,0 +1,6 @@
+{
+    "rules": {
+        "pathPatterns": "https://devwifhat.vercel.app/api/actions/burn/*",
+        "apiPath": "https://devwifhat.vercel.app/api/actions/burn/*"
+    }
+}
