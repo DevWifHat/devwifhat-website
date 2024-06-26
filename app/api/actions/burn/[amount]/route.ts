@@ -1,5 +1,5 @@
 import { ActionGetResponse, ActionPostRequest, ActionPostResponse, ACTIONS_CORS_HEADERS, createPostResponse } from "@solana/actions";
-import { createBurnInstruction } from "@solana/spl-token";
+import { createBurnInstruction, getAssociatedTokenAddressSync } from "@solana/spl-token";
 import { Connection, PublicKey, Transaction, TransactionInstruction } from "@solana/web3.js";
 
 const hookWallet = new PublicKey("DeVwhQE3FsUcqXq3AKjdwwjLVZZqaz9URwLghMUCtN4u");
@@ -11,9 +11,9 @@ const connection = new Connection(RPC);
 export const GET = (req: Request) => {
     const payload: ActionGetResponse = {
         icon: new URL("/dev_wif_hat_icon.png", new URL(req.url).origin).toString(),
-        title: "Swap",
-        description: "Swap SOL for DWH",
-        label: "Swap"
+        title: "Burn",
+        description: "Burn SOL for DWH",
+        label: "Burn"
     }
 
     return Response.json(payload, {
@@ -39,6 +39,7 @@ export const POST = async (req: Request, { params }: { params: { amount: string 
         // TODO: Get and parse amount
         const amount = parseInt(params.amount || "69000000");
         const message = `Burn ${(amount).toFixed(2)} $DWH, Dev is watching you.`;
+        const ata = getAssociatedTokenAddressSync(mint, account);
 
         const tx = new Transaction();
 
@@ -52,7 +53,7 @@ export const POST = async (req: Request, { params }: { params: { amount: string 
                 data: Buffer.from(message, "utf-8"),
                 programId: new PublicKey("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"),
             }),
-            createBurnInstruction(account, mint, account, amount * 10 ** 6)
+            createBurnInstruction(ata, mint, account, amount * 10 ** 6)
         )
 
         const blockhash = await connection.getLatestBlockhash();
