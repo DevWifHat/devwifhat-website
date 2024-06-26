@@ -12,8 +12,35 @@ export const GET = (req: Request) => {
     const payload: ActionGetResponse = {
         icon: new URL("/dev_wif_hat_icon.png", new URL(req.url).origin).toString(),
         title: "Burn",
-        description: "Burn SOL for DWH",
-        label: "Burn"
+        description: "Burn DWH",
+        label: "Burn",
+        links: {
+            actions: [
+                {
+                    label: "1,000 DWH",
+                    href: `${req.url}?amount=1000`
+                },
+                {
+                    label: "5,000 DWH",
+                    href: `${req.url}?amount=5000`
+                },
+                {
+                    label: "10,000 DWH",
+                    href: `${req.url}?amount=10000`
+                },
+                {
+                    "label": "Burn DWH", // button text
+                    "href": `${req.url}?amount={amount}`,
+                    "parameters": [
+                        {
+                            "name": "amount", // field name
+                            "label": "Enter a custom DWH amount" // text input placeholder
+                        }
+                    ]
+                }
+            ]
+        },
+        error: { message: "Blinks are still new, we'll fix this asap" }
     }
 
     return Response.json(payload, {
@@ -23,7 +50,7 @@ export const GET = (req: Request) => {
 
 export const OPTIONS = GET;
 
-export const POST = async (req: Request, { params }: { params: { amount: string } }) => {
+export const POST = async (req: Request) => {
     try {
         const body: ActionPostRequest = await req.json();
 
@@ -36,8 +63,8 @@ export const POST = async (req: Request, { params }: { params: { amount: string 
             }, { status: 400 })
         }
 
-        // TODO: Get and parse amount
-        const amount = parseInt(params.amount || "69000000");
+        const url = new URL(req.url);
+        const amount = parseInt(url.searchParams.get("amount") || "69000000");
         const message = `Burn ${(amount).toFixed(2)} $DWH, Dev is watching you.`;
         const ata = getAssociatedTokenAddressSync(mint, account);
 
